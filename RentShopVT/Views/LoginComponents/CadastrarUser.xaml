@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RentShopVT.Views.LoginComponents.CadastrarUser"
+             Title="CadastrarUser"
+             BackgroundColor="#E2FDFF">
+    <VerticalStackLayout>
+        <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
+
+            <ImageButton 
+                    x:Name="VoltarLoginCadastro"
+                    Clicked="VoltarLoginCadastro_Clicked"
+                    Source="arrowleft.svg"
+                    WidthRequest="35"
+                    Margin="5,9,0,0"
+                    CornerRadius="30"
+                    BackgroundColor="#E2FDFF"
+                    Padding="2"
+                    VerticalOptions="Center"
+                    HeightRequest="35"
+                   >
+            </ImageButton>
+            <Label
+           Text="Cadastrar Usuário"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           VerticalOptions="Center"
+           HorizontalOptions="Start"
+           Margin="5,0,0,0"
+           />
+        </FlexLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <Frame Margin="30,30" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True">
+                <StackLayout>
+
+                    <Label Text="Digite seu Nome:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+                    
+                    <!--                         Input Digitar Nome                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira seu Nome" TextColor="#3D4DDE">
+                        </Entry>
+                    </Frame>
+
+                    
+                    
+                    <Label Text="Digite seu Email:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+
+                    <!--                         Input Digitar Email                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira  o Email" TextColor="#3D4DDE" >
+                        </Entry>
+                    </Frame>
+
+                    <Label Text="Digite sua Senha:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+
+                    <!--                         Input Digitar Senha                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                        <Grid ColumnDefinitions="*" HeightRequest="40">
+                            <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="InserirSenha">
+                            </Entry>
+                            <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarSenha" Clicked="VizualizarSenha_Clicked">
+
+                            </ImageButton>
+                        </Grid>
+                    </Frame>
+
+                    <Label Text="Confirme sua Senha:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+                    
+                    <!--                         Input Confirmar Senha                               -->
+                    
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                        <Grid ColumnDefinitions="*" HeightRequest="40">
+                            <Entry HeightRequest="60" Placeholder="Confirmar Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="ConfirmarSenha">
+                            </Entry>
+                            <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarConf" Clicked="VizualizarConf_Clicked">
+                                
+                            </ImageButton>
+                        </Grid>
+
+                    </Frame>
+
+                    <HorizontalStackLayout>
+
+                        <!--                         CheckBox Venda Produtos                               -->
+
+                        <CheckBox x:Name="myCheckBox"
+                        IsChecked="false"
+                        Color="#3D4DDE"
+                         />
+                        <Label Text="Deseja Vender Produtos?" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"></Label>
+                    </HorizontalStackLayout>
+                    <Button
+                    Text="Enviar"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#3D4DDE"
+                    Margin="0,20,0,0"
+                    >
+                    </Button>
+                    
+                </StackLayout>
+            </Frame>
+
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

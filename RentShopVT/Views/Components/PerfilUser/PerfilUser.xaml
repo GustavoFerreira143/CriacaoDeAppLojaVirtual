@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="RentShopVT.Views.Components.PerfilUser.PerfilUser"
+             BackgroundColor="#E2FDFF">
+    <StackLayout>
+        <Grid BackgroundColor="#3D4DDE" HeightRequest="60" ColumnDefinitions="*,Auto">
+            <Label
+           Text="RentShopVT"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           VerticalOptions="Center"
+           HorizontalOptions="Start"
+           Margin="20,0,0,0"/>
+
+            <Button ImageSource="bellfill.svg"
+               BackgroundColor="Transparent"
+               FontAttributes="Bold"
+               Padding="0"
+               HeightRequest="60"
+               WidthRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="30,0,20,0"
+               Grid.Column="0"/>
+
+            <Button Text="Logout"
+               BackgroundColor="White"
+               TextColor="#3D4DDE"
+               FontAttributes="Bold"
+               CornerRadius="10"
+               HeightRequest="40"
+               WidthRequest="100"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0,0,20,0"
+               Grid.Column="1"/>
+        </Grid>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <VerticalStackLayout Padding="20" Spacing="10">
+
+                    <!-- Imagem de perfil arredondada e centralizada -->
+                    <Image Source="personcircle.svg"
+                       WidthRequest="120"
+                       HeightRequest="120"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Clip="M60,0 A60,60 0 1,1 60,120 A60,60 0 1,1 60,0"/>
+                    <Label Text="Editar"
+                        TextColor="#3D4DDE"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"   >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenUrlCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!-- Nome de Usuário -->
+                    <VerticalStackLayout Spacing="10" Margin="0,10,0,0">
+                        <Label Text="Dados de Usuário:" FontAttributes="Bold" FontSize="16" TextColor="Black" />
+                        <HorizontalStackLayout>
+                            <Label Text="Nome:" FontAttributes="Bold" FontSize="15" TextColor="Black"></Label>
+                            <Label Text="Gustavo" FontSize="15" Margin="5,0,0,0" TextColor="Black"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Empresa:" FontAttributes="Bold" FontSize="15" TextColor="Black"></Label>
+                            <Label Text="Sem Empresa Especificada" FontSize="15" Margin="5,0,0,0" TextColor="Black"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <!-- Informações de Contato -->
+                    <Label Text="Informações de Contato:" FontAttributes="Bold" FontSize="18" Margin="0,10,0,5" TextColor="Black"/>
+
+                    <VerticalStackLayout>
+
+                        <!-- Linha do Contato -->
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center" HeightRequest="50">
+                            <VerticalStackLayout>
+                                <Label Text="Contato" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                                <Label Text="+00 00 00000-0000" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                            </VerticalStackLayout>
+                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold"/>
+                        </FlexLayout>
+
+                        <!-- Linha do Email -->
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center" HeightRequest="50">
+                            <VerticalStackLayout>
+                                <Label Text="Email" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
+                                <Label Text="gusta.ferreira32@gmail.com" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                            </VerticalStackLayout>
+                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold"/>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    
+                    <Frame Padding="5" BorderColor="Transparent" CornerRadius="10" HasShadow="True" HeightRequest="120" BackgroundColor="White" >
+                        <VerticalStackLayout Spacing="10">
+
+                            <!-- Linha das Redes Sociais -->
+                            <FlexLayout Direction="Column" AlignItems="Center" HeightRequest="120">
+                                <Label Text="Redes Sociais:" FontAttributes="Bold" FontSize="14" Margin="5,0,0,0" TextColor="Black"/>
+                                <HorizontalStackLayout Spacing="40" Margin="10,5,0,0">
+                                    <VerticalStackLayout>
+                                    <ImageButton Source="personcircle.svg" WidthRequest="50" HeightRequest="50" Command="{Binding OpenFacebookCommand}"/>
+                                        <Label Text="Linkedin"
+                                               HorizontalTextAlignment="Center" TextColor="Black"></Label>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout>
+                                        <ImageButton Source="personcircle.svg" WidthRequest="50" HeightRequest="50" Command="{Binding OpenFacebookCommand}"/>
+                                        <Label Text="GitHub" HorizontalTextAlignment="Center" TextColor="Black"></Label>
+                                    </VerticalStackLayout>
+                                    
+                                </HorizontalStackLayout>
+                            </FlexLayout>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                    <Button Text="Adicionar Produto"
+                             BackgroundColor="#3D4DDE"
+                             TextColor="#E2FDFF"
+                             Margin="0"
+                             Padding="0"
+                             FontAttributes="Bold"
+                             CornerRadius="10"
+                             MinimumWidthRequest="180"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                         ></Button>
+
+                    <Label Text="Seus Produtos Disponibilizados:"
+                            TextColor="#3D4DDE"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center">
+                    </Label>
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" Padding="0">
+                        <!-- Coluna 1 -->
+                        <Frame Grid.Column="0"
+                                  Margin="2"
+                                  Padding="0"
+                                  BorderColor="#E2FDFF"
+                                  CornerRadius="5"
+                                  HasShadow="True"
+                                  BackgroundColor="#E2FDFF">
+                            <VerticalStackLayout HeightRequest="200" Padding="5">
+                                <Image Source="lousa.png"
+                                          WidthRequest="100"
+                                          HeightRequest="100" />
+                                <Label Text="Lousa Branca Com um Mega..." FontSize="13" HeightRequest="38" Margin="10,0,0,0" TextColor="Black"/>
+                                <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Button Text="Editar" 
+                                           FontAttributes="Bold"
+                                           TextColor="#3D4DDE" 
+                                           BackgroundColor="Transparent"
+                                           FontSize="11"
+                                           Padding="0"
+                                           Margin="5,0,0,0"/>
+
+                                    <ImageButton Source="trash.svg"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="15"
+                                                WidthRequest="70"
+                                                Margin="0"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Coluna 2 -->
+                        <Frame Grid.Column="1"
+                                  Margin="2"
+                                  Padding="0"
+                                  BorderColor="#E2FDFF"
+                                  CornerRadius="5"
+                                  HasShadow="True"
+                                  BackgroundColor="#E2FDFF">
+                            <VerticalStackLayout HeightRequest="200" Padding="5">
+                                <Image Source="lousa.png"
+                                                  WidthRequest="100"
+                                                  HeightRequest="100" />
+                                <Label Text="Item 2" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                                <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Button Text="Editar" 
+                                           FontAttributes="Bold"
+                                           TextColor="#3D4DDE" 
+                                           BackgroundColor="Transparent"
+                                           FontSize="11"
+                                           Padding="0"
+                                           Margin="5,0,0,0"/>
+
+                                    <ImageButton Source="trash.svg"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="15"
+                                                WidthRequest="70"
+                                                Margin="0"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Coluna 3 -->
+                        <Frame Grid.Column="2"
+                                  Margin="2"
+                                  Padding="0"
+                                  BorderColor="#E2FDFF"
+                                  CornerRadius="5"
+                                  HasShadow="True"
+                                  BackgroundColor="#E2FDFF">
+                            <VerticalStackLayout HeightRequest="200" Padding="5">
+                                <Image Source="lousa.png"
+                                        WidthRequest="100"
+                                        HeightRequest="100" />
+                                <Label Text="Item 3" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                                <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Button Text="Editar" 
+                                           FontAttributes="Bold"
+                                           TextColor="#3D4DDE" 
+                                           BackgroundColor="Transparent"
+                                           FontSize="11"
+                                           Padding="0"
+                                           Margin="5,0,0,0"/>
+
+                                    <ImageButton Source="trash.svg"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="15"
+                                                WidthRequest="70"
+                                                Margin="0"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+
+                </VerticalStackLayout>
+  
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

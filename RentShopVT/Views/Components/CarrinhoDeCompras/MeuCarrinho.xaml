@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             
+             x:Class="RentShopVT.Views.Components.CarrinhoDeCompras.MeuCarrinho"
+             BackgroundColor="#E2FDFF"
+             >
+
+    <StackLayout>
+        <Grid BackgroundColor="#3D4DDE" HeightRequest="60" ColumnDefinitions="*,Auto">
+            <Label
+           Text="RentShopVT"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           VerticalOptions="Center"
+           HorizontalOptions="Start"
+           Margin="20,0,0,0"/>
+
+            <Button ImageSource="bellfill.svg"
+               BackgroundColor="Transparent"
+               FontAttributes="Bold"
+               Padding="0"
+               HeightRequest="60"
+               WidthRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="30,0,20,0"
+               Grid.Column="0"/>
+
+            <Button Text="Logout"
+               BackgroundColor="White"
+               TextColor="#3D4DDE"
+               FontAttributes="Bold"
+               CornerRadius="10"
+               HeightRequest="40"
+               WidthRequest="100"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0,0,20,0"
+               Grid.Column="1"/>
+
+        </Grid>
+        <ScrollView VerticalOptions="StartAndExpand">
+
+            <StackLayout>
+                <Label Text="Produtos Adicionados:"
+                       TextColor="#3D4DDE"
+                       Margin="20,5,0,0"
+                       FontSize="15"
+                       FontAttributes="Bold">
+                    
+                </Label>
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" Padding="0">
+                    <!-- Coluna 1 -->
+                    <Frame Grid.Column="0"
+           Margin="2"
+           Padding="0"
+           BorderColor="#E2FDFF"
+           CornerRadius="5"
+           HasShadow="True"
+           BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                   WidthRequest="100"
+                   HeightRequest="100" />
+                            <Label Text="Lousa Branca Com um Mega..." FontSize="13" HeightRequest="38" Margin="10,0,0,0" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                        FontAttributes="Bold"
+                        TextColor="#3D4DDE" 
+                        BackgroundColor="Transparent"
+                        FontSize="11"
+                        Padding="0"
+                        Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                             BackgroundColor="Transparent"
+                             HeightRequest="15"
+                             WidthRequest="50"
+                             Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Coluna 2 -->
+                    <Frame Grid.Column="1"
+           Margin="2"
+           Padding="0"
+           BorderColor="#E2FDFF"
+           CornerRadius="5"
+           HasShadow="True"
+           BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                   WidthRequest="100"
+                   HeightRequest="100" />
+                            <Label Text="Item 2" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                        FontAttributes="Bold"
+                        TextColor="#3D4DDE" 
+                        BackgroundColor="Transparent"
+                        FontSize="11"
+                        Padding="0"
+                        Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                             BackgroundColor="Transparent"
+                             HeightRequest="15"
+                             WidthRequest="50"
+                             Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Coluna 3 -->
+                    <Frame Grid.Column="2"
+           Margin="2"
+           Padding="0"
+           BorderColor="#E2FDFF"
+           CornerRadius="5"
+           HasShadow="True"
+           BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                   WidthRequest="100"
+                   HeightRequest="100" />
+                            <Label Text="Item 3" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                        FontAttributes="Bold"
+                        TextColor="#3D4DDE" 
+                        BackgroundColor="Transparent"
+                        FontSize="11"
+                        Padding="0"
+                        Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                             BackgroundColor="Transparent"
+                             HeightRequest="15"
+                             WidthRequest="50"
+                             Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" Padding="0">
+                    <!-- Coluna 1 -->
+                    <Frame Grid.Column="0"
+                              Margin="2"
+                              Padding="0"
+                              BorderColor="#E2FDFF"
+                              CornerRadius="5"
+                              HasShadow="True"
+                              BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                                  WidthRequest="100"
+                                  HeightRequest="100" />
+                            <Label Text="Lousa Branca Com um Mega..." FontSize="13" HeightRequest="38" Margin="10,0,0,0" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                                               FontAttributes="Bold"
+                                               TextColor="#3D4DDE" 
+                                               BackgroundColor="Transparent"
+                                               FontSize="11"
+                                               Padding="0"
+                                               Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="15"
+                                            WidthRequest="50"
+                                            Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Coluna 2 -->
+                    <Frame Grid.Column="1"
+          Margin="2"
+          Padding="0"
+          BorderColor="#E2FDFF"
+          CornerRadius="5"
+          HasShadow="True"
+          BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                  WidthRequest="100"
+                  HeightRequest="100" />
+                            <Label Text="Item 2" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                       FontAttributes="Bold"
+                       TextColor="#3D4DDE" 
+                       BackgroundColor="Transparent"
+                       FontSize="11"
+                       Padding="0"
+                       Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                            BackgroundColor="Transparent"
+                            HeightRequest="15"
+                            WidthRequest="50"
+                            Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Coluna 3 -->
+                    <Frame Grid.Column="2"
+          Margin="2"
+          Padding="0"
+          BorderColor="#E2FDFF"
+          CornerRadius="5"
+          HasShadow="True"
+          BackgroundColor="#E2FDFF">
+                        <VerticalStackLayout HeightRequest="200" Padding="5">
+                            <Image Source="lousa.png"
+                  WidthRequest="100"
+                  HeightRequest="100" />
+                            <Label Text="Item 3" FontSize="13" Margin="10,0,0,0" HeightRequest="38" TextColor="Black"/>
+                            <Label Text="R$250,00 Dia" FontSize="13" HeightRequest="15" Margin="10,0,0,0" TextColor="Black" FontAttributes="Bold"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Button Text="Ver Detalhes" 
+                       FontAttributes="Bold"
+                       TextColor="#3D4DDE" 
+                       BackgroundColor="Transparent"
+                       FontSize="11"
+                       Padding="0"
+                       Margin="10,0,0,0"/>
+
+                                <ImageButton Source="trash.svg"
+                            BackgroundColor="Transparent"
+                            HeightRequest="15"
+                            WidthRequest="50"
+                            Margin="0"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+
+
+            </StackLayout>
+            
+        </ScrollView>
+        <Frame Padding="10"
+       BackgroundColor="#3D4DDE"
+       CornerRadius="0"
+       Margin="0"
+       HasShadow="False"
+       HeightRequest="90"
+       BorderColor="#3D4DDE">
+            <VerticalStackLayout>
+
+                <Label Text="SubTotal:"
+               FontAttributes="Bold"
+               FontSize="21"
+               TextColor="White"
+               HorizontalOptions="Start"
+               Margin="1,0,0,0"        />
+
+                <FlexLayout Direction="Row"
+                    AlignItems="Center"
+                    JustifyContent="SpaceBetween">
+
+                    <Label Text="R$1.500,00"
+                   FontSize="18"
+                   TextColor="White"
+                   Margin="1,5,30,0"
+                   VerticalOptions="Center"/>
+
+                    <Button Text="Finalizar compra"
+                    FontAttributes="Bold"
+                    BackgroundColor="#6A7DFB"
+                    TextColor="White"
+                    CornerRadius="5"
+                    Padding="10,5"
+                    FontSize="13"/>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RentShopVT.Views.Components.SearchPage.SearchPage"
+             BackgroundColor="#E2FDFF">
+    <StackLayout>
+        <Grid BackgroundColor="#3D4DDE" HeightRequest="60" ColumnDefinitions="*,Auto">
+            <Frame CornerRadius="20" Padding="0" BorderColor="White" Margin="5,0,5,0" WidthRequest="330" HeightRequest="35">
+                <Entry x:Name="PesquisaProduto"
+                       Placeholder="O que está procurando?"
+                       PlaceholderColor="#3D4DDE"
+                       Grid.Column="0"
+                       WidthRequest="330"
+                       BackgroundColor="#E2FDFF"
+                       TextColor="#3D4DDE"
+                       ClearButtonVisibility="WhileEditing"
+                       ReturnType="Send"
+                       Visual="None"
+                       HeightRequest="58"
+                       />
+            </Frame>
+            <Button 
+                ImageSource="search.svg"
+               BackgroundColor="White"
+               TextColor="#3D4DDE"
+               FontAttributes="Bold"
+               CornerRadius="20"
+               HeightRequest="35"
+               WidthRequest="40"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0,0,20,0"
+               Grid.Column="1"/>
+        </Grid>
+
+        <ScrollView VerticalOptions="StartAndExpand">
+            
+            <StackLayout>
+                
+            <Frame BackgroundColor="White" Padding="0" Margin="0" CornerRadius="0" BorderColor="White">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" Padding="0">
+
+
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 1" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 20,90" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa A" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 2" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 35,50" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa B" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 3" FontSize="14" TextColor="Black" FontAttributes="Bold" />
+                            <Label Text="R$ 15,30" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa C" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 4" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 45,00" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa D" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+            </Frame>
+
+                <Frame BackgroundColor="White" Padding="0" Margin="0" CornerRadius="0" BorderColor="White">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" Padding="0">
+
+
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 1" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 20,90" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa A" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 2" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 35,50" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa B" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 3" FontSize="14" TextColor="Black" FontAttributes="Bold" />
+                            <Label Text="R$ 15,30" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa C" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                        <VerticalStackLayout>
+                            <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                            <Label Text="Produto 4" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="R$ 45,00" FontSize="12" TextColor="Black" />
+                            <Label Text="Empresa D" FontSize="12" TextColor="Black" />
+                            <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+            </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

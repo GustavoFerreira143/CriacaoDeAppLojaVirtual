@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:home="clr-namespace:RentShopVT.Views.Components.HomePage"
+             x:Class="RentShopVT.Views.Components.HomePage.HomePage"
+             BackgroundColor="#E2FDFF"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        
+        <Grid BackgroundColor="#3D4DDE" HeightRequest="60" ColumnDefinitions="*,Auto">
+            <Label
+           Text="RentShopVT"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           VerticalOptions="Center"
+           HorizontalOptions="Start"
+           Margin="20,0,0,0"/>
+
+            <Button ImageSource="bellfill.svg"
+               BackgroundColor="Transparent"
+               FontAttributes="Bold"
+               Padding="0"
+               HeightRequest="60"
+               WidthRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="30,0,20,0"
+               Grid.Column="0"/>
+
+            <Button Text="Login"
+               BackgroundColor="White"
+               TextColor="#3D4DDE"
+               FontAttributes="Bold"
+               CornerRadius="10"
+               HeightRequest="40"
+               WidthRequest="100"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0,0,20,0"
+               Clicked="Button_Clicked"
+               Grid.Column="1"/>
+        </Grid>
+
+    <ScrollView VerticalOptions="StartAndExpand">
+
+        <!--Área De Carroussel Alugados com Frequeência-->
+           <StackLayout>
+            <ContentView HeightRequest="35" >
+                    <Label 
+            Text="Alugados Com Frequência:"
+            VerticalOptions="Center" 
+            FontAttributes="Bold"
+            Margin ="20,10,0,0" 
+            FontSize="17"
+            TextColor="#3D4DDE"
+            />
+                </ContentView>
+
+
+                <CarouselView
+                  ItemsSource="{Binding Items}"
+                  HeightRequest="240"
+                  Margin="50,0,50,0"
+                  PeekAreaInsets="140"
+                  WidthRequest="500"
+                  >
+
+                    <CarouselView.ItemsSource>
+                        <x:Array Type="{x:Type home:CarrousselItem}">
+                            <home:CarrousselItem ImageSource="projetor.png" Description="Projetor Multilaser" Preco=" R$20,90"/>
+                            <home:CarrousselItem ImageSource="lousa.png" Description="Lousa Branca, canetas inclusas" Preco=" R$20,90"/>
+                            <home:CarrousselItem ImageSource="projetor.png" Description="Legenda 3" Preco=" R$20,90"/>
+                        </x:Array>
+                    </CarouselView.ItemsSource>
+
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HorizontalOptions="Center" HeightRequest="215" WidthRequest="200" CornerRadius="10" BackgroundColor="#E2FDFF"  Padding="0" BorderColor="#E2FDFF" HasShadow="True">
+                                <VerticalStackLayout >
+
+                                    <Image Source="{Binding ImageSource}"
+                           Aspect="AspectFill"
+                           HeightRequest="150"
+                           WidthRequest="200"
+                           >
+                                    </Image>
+
+                                    <Label Text="{Binding Description}"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           WidthRequest="195"
+                           HorizontalTextAlignment="Start"
+                           TextColor="Black"
+                           Padding="0,5,0,0"    />
+
+
+                                    <Label Text="{Binding Preco}"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           WidthRequest="195"
+                           HorizontalTextAlignment="Start"
+                           Padding="0,2,0,0" 
+                           TextColor="Black"
+                           />
+
+                                </VerticalStackLayout>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <!--Área De Top 3 Empresas-->
+
+                <ContentView>
+                    <Label Text="Top 3 Melhores Empresas" TextColor="Black" FontSize="17" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,10">
+                    </Label>
+                </ContentView>
+
+                <Frame CornerRadius="10" HasShadow="True" Padding="10" HorizontalOptions="Center" BackgroundColor="#BFD7FF" BorderColor="Transparent">
+                    <FlexLayout Direction="Row" Wrap="Wrap" JustifyContent="SpaceAround">
+
+                        <VerticalStackLayout HorizontalOptions="Center" WidthRequest="100">
+                            <Image Source="personcircle.svg" WidthRequest="80" HeightRequest="80"/>
+                            <Label Text="Faz tudo por nada" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                            <Label Text="Ver Produtos" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout HorizontalOptions="Center" WidthRequest="100">
+                            <Image Source="personcircle.svg" WidthRequest="80" HeightRequest="80"/>
+                            <Label Text="Empresa do Joaquim da Silva" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                            <Label Text="Ver Produtos" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                        </VerticalStackLayout>
+
+
+                        <VerticalStackLayout HorizontalOptions="Center" WidthRequest="100">
+                            <Image Source="personcircle.svg" WidthRequest="80" HeightRequest="80"/>
+                            <Label Text="Empresa Pau Mandado" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                            <Label Text="Ver Produtos" 
+                   TextColor="Black" 
+                   FontSize="13" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,10,0,0"/>
+                        </VerticalStackLayout>
+
+                    </FlexLayout>
+                </Frame>
+
+                <!--Área De Produtos Recomendados-->
+                <ContentView  >
+                    <Label 
+            Text="Recomendados para Você:"
+            VerticalOptions="Center" 
+            FontAttributes="Bold"
+            Margin ="20,10,0,10" 
+            FontSize="17"
+            TextColor="#3D4DDE"
+            />
+                </ContentView>
+                <Frame BackgroundColor="White" Padding="0" Margin="0" CornerRadius="0" BorderColor="Transparent">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" Padding="0">
+
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 1" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 20,90" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa A" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 2" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 35,50" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa B" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 3" FontSize="14" TextColor="Black" FontAttributes="Bold" />
+                                <Label Text="R$ 15,30" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa C" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 4" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 45,00" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa D" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </Frame>
+                <!--Área De Produtos Mais Bem Recomendados-->
+                <ContentView  >
+                    <Label 
+            Text="Mais Bem Avaliados:"
+            VerticalOptions="Center" 
+            FontAttributes="Bold"
+            Margin ="20,10,0,10" 
+            FontSize="17"
+            TextColor="#3D4DDE"
+            />
+                </ContentView>
+
+                <Frame BackgroundColor="White" Padding="0" Margin="0" CornerRadius="0" BorderColor="Transparent">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" Padding="0">
+
+
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 1" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 20,90" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa A" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+
+                        <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 2" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 35,50" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa B" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="projetor.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 3" FontSize="14" TextColor="Black" FontAttributes="Bold" />
+                                <Label Text="R$ 15,30" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa C" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+
+                        <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#E2FDFF" HeightRequest="380" Margin="2" Padding="5" CornerRadius="2" BorderColor="#E2FDFF" HasShadow="True">
+                            <VerticalStackLayout>
+                                <Image Source="lousa.png" Aspect="AspectFill" HeightRequest="250"/>
+                                <Label Text="Produto 4" FontSize="14" FontAttributes="Bold" TextColor="Black" />
+                                <Label Text="R$ 45,00" FontSize="12" TextColor="Black" />
+                                <Label Text="Empresa D" FontSize="12" TextColor="Black" />
+                                <Button Text="Clique para Detalhes" FontSize="12" TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </Frame>
+
+                <ContentView HeightRequest="40">
+                    <Label Text="Ver Mais Produtos"
+                       FontSize="15"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"
+                       FontAttributes="Bold"/>
+                </ContentView>
+              </StackLayout>
+         </ScrollView>
+    </StackLayout>
+</ContentPage>
