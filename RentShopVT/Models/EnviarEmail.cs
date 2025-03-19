@@ -1,4 +1,4 @@
-﻿using System;
+i﻿using System;
 using RestSharp; // RestSharp v112.1.0
 using RestSharp.Authenticators;
 using System.Threading;
@@ -56,7 +56,7 @@ private static string GerarToken()
         var token = GerarToken();
         
         await Task.Delay(500); // Simula um pequeno atraso (opcional)
-        if (emailDestinatario == "gustavo.feneita1@gmail.com")
+        if (emailDestinatario == "gustavo@gmail.com")
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
