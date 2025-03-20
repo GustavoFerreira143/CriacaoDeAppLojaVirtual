@@ -1,4 +1,4 @@
-i﻿using System;
+using System;
 using RestSharp; // RestSharp v112.1.0
 using RestSharp.Authenticators;
 using System.Threading;

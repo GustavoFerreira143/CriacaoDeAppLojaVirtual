@@ -10,7 +10,7 @@ namespace RentShopVT.ViewModels
 {
     public partial class RecuperaSenhaViewModel : ObservableObject
     {
-//-----------------------------------------------------------------------------------------Valores Email----------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------Valores Email----------------------------------------------------------------------------------------
         [ObservableProperty]
         private string email;
 
@@ -48,7 +48,7 @@ namespace RentShopVT.ViewModels
             RetornaEmailCommand = new RelayCommand(async () => await RetornaEmail());
         }
 
-//------------------------------------------------------------------------------------------Envia Token por Email--------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------Envia Token por Email--------------------------------------------------------------------------------
         private async Task Enviar()
         {
             if (string.IsNullOrWhiteSpace(Email))
@@ -128,8 +128,8 @@ namespace RentShopVT.ViewModels
                 {
                     Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Token Incorreto Inserido", "Red"));
                     ViewEmail = false;
-                    ViewToken = false;
-                    ViewTrocaSenha = true;
+                    ViewToken = true;
+                    ViewTrocaSenha = false;
                     ValorToken = "";
                 }
             }
