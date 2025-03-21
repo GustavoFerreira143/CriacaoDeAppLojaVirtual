@@ -39,10 +39,11 @@
         
         <ScrollView VerticalOptions="StartAndExpand">
 
-            <Frame Margin="30,30" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True">
+            <Frame Margin="15,15" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True">
 
                 <StackLayout>
-                    <VerticalStackLayout IsVisible="{Binding ViewEmail}}">
+                    <VerticalStackLayout IsVisible="{Binding ViewEmail}">
+                        
                 <Label Text="Digite Email para Recuperação:" FontSize="15" FontAttributes="Bold"></Label>
 
                         <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White" Margin="0,20,0,20">
