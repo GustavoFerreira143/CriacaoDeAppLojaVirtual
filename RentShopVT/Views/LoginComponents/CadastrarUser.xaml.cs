@@ -1,3 +1,5 @@
+using RentShopVT.ViewModels;
+
 namespace RentShopVT.Views.LoginComponents;
 
 public partial class CadastrarUser : ContentPage
@@ -5,7 +7,8 @@ public partial class CadastrarUser : ContentPage
 	public CadastrarUser()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new CadastrarUserViewModel(Navigation);
+    }
 
     async private void VoltarLoginCadastro_Clicked(object sender, EventArgs e)
     {

@@ -85,9 +85,11 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="DotNetEnv" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="Mopups" Version="1.3.2" />
 		<PackageReference Include="RestSharp" Version="112.0.0" />
 	</ItemGroup>
 
@@ -99,6 +101,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\PerfilUser\PerfilUser.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\TelaLoading.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginComponents\CadastrarUser.xaml">

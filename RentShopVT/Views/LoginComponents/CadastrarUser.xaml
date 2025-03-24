@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentShopVT.Views.LoginComponents.CadastrarUser"
+             xmlns:vm="clr-namespace:RentShopVT.ViewModels"
              Title="CadastrarUser"
              BackgroundColor="#E2FDFF">
+
+
     <VerticalStackLayout>
         <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
 
@@ -30,40 +33,214 @@
            Margin="5,0,0,0"
            />
         </FlexLayout>
-        <ScrollView VerticalOptions="StartAndExpand">
-            <Frame Margin="30,30" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True">
-                <StackLayout>
+        <Frame Margin="15,15" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True" IsVisible="True">
+            <StackLayout >
 
-                    <Label Text="Digite seu Nome:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
-                    </Label>
+                <!--                                                                            Inicio Cadastrar Conta                                                                 -->
+
+                <VerticalStackLayout IsVisible="{Binding ViewPrimeiraParte}">
                     
+                    <Label Text="Digite seu Nome:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                            </Label>
+
+                            <!--                         Input Digitar Nome                               -->
+
+                            <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
+                                <Entry HeightRequest="60" Placeholder="Insira seu Nome" TextColor="#3D4DDE" Text="{Binding Nome}">
+                                </Entry>
+                            </Frame>
+
+
+
+                            <Label Text="Digite seu Email:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                            </Label>
+
+                            <!--                         Input Digitar Email                               -->
+
+                            <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira  o Email" TextColor="#3D4DDE" Text="{Binding Email}" Keyboard="Email">
+                                </Entry>
+                            </Frame>
+
+
+                        <Button
+                            Text="Enviar"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="#3D4DDE"
+                            Margin="0,20,0,0"
+                            Command="{Binding EnviarPrimeiraEtapaCadastro}"
+                            >
+                        </Button>
+                </VerticalStackLayout>
+                
+                
+                
+                <!--                                                                            Verificar Token Email                                                 -->
+
+
+
+                <VerticalStackLayout IsVisible="{Binding ViewSegundaParte}">
+                    
+                    <Label Text="Digite o Token Enviado para:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,5">
+                    </Label>
+                    <Label Text="{Binding EmailEnviado}" FontAttributes="Bold" TextColor="Black" FontSize="13" Margin="0,5,0,10" HorizontalTextAlignment="Center">
+                    </Label>
+
                     <!--                         Input Digitar Nome                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
-                        <Entry HeightRequest="60" Placeholder="Insira seu Nome" TextColor="#3D4DDE">
+                        <Entry HeightRequest="60" Placeholder="Insira seu Nome" TextColor="#3D4DDE" Text="{Binding Token}">
                         </Entry>
                     </Frame>
 
-                    
-                    
-                    <Label Text="Digite seu Email:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+
+                    <Button
+                            Text="Enviar"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="#3D4DDE"
+                            Margin="0,20,0,0"
+                            Command="{Binding EnviarSegundaEtapaCadastro}">
+                    </Button>
+                </VerticalStackLayout>
+                
+                
+                
+            <!--                                                                            Termos de Uso APP Rento Shop VT                                                 -->
+
+
+
+                <ScrollView VerticalOptions="StartAndExpand" HeightRequest="650" IsVisible="{Binding ViewTerceiraParte}">    
+                <VerticalStackLayout>
+
+                        <Label FontSize="15" TextColor="Black" Text="Termos de Aluguel RentShopVT:" FontAttributes="Bold"></Label>
+                        <Label  LineBreakMode="WordWrap" FontSize="12" TextColor="Black" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque volutpat turpis, in porttitor dolor facilisis eget. Donec orci dolor, fringilla id diam id, venenatis malesuada nibh. Fusce ac lorem sit amet purus bibendum pulvinar. Suspendisse posuere orci vitae congue ultrices. Nulla consequat tincidunt congue. Duis id sollicitudin odio. Phasellus cursus pellentesque odio. Vestibulum quis suscipit erat. Integer a libero faucibus, sollicitudin libero non, dapibus tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris bibendum arcu vitae lectus mollis, ut semper dolor egestas.
+
+Fusce sollicitudin, sem non malesuada condimentum, dui risus lacinia tortor, at dapibus augue ligula sed enim. Curabitur eleifend quam vitae ultricies dignissim. Proin euismod magna eu dolor fermentum, nec molestie felis porttitor. Duis pharetra vehicula arcu. Etiam semper, velit ac convallis hendrerit, urna mauris dapibus tortor, eget sagittis nisi nisl quis nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi purus nisl, dictum et augue a, molestie porta nisi. Duis auctor mauris nec nibh dictum laoreet.
+
+In posuere sed mauris nec condimentum. Praesent pretium orci porta nibh pellentesque euismod. Praesent commodo viverra est id feugiat. Suspendisse tristique dictum lorem sit amet efficitur. Mauris vitae ex nisl. Nulla facilisi. Proin molestie commodo turpis, ut blandit mauris interdum fermentum. Vestibulum purus justo, venenatis ac lorem bibendum, finibus condimentum ipsum. Aenean quis turpis mi. Ut in efficitur sem, a lobortis lectus.
+
+Maecenas mollis pulvinar sapien eget cursus. Curabitur vel lectus sit amet arcu molestie vestibulum sit amet at risus. Fusce tincidunt condimentum venenatis. Sed iaculis est a felis sollicitudin, id sagittis lacus ornare. Integer at pulvinar dui. Praesent consectetur venenatis diam, eget luctus tortor sodales eu. In hac habitasse platea dictumst. Fusce auctor dolor nec lectus gravida condimentum. Integer diam lacus, volutpat vel quam at, imperdiet ullamcorper ex. Cras augue eros, pharetra eu scelerisque ut, efficitur at felis. Curabitur ac nunc consectetur, maximus mauris ut, consectetur sem. Mauris at imperdiet velit.
+
+Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat non augue lobortis vestibulum. Etiam libero elit, tincidunt et lectus aliquet, tincidunt mattis lacus. Fusce venenatis lacus sit amet mi rhoncus placerat. Duis blandit lorem eu ornare pulvinar. Suspendisse sed erat enim. Proin varius, turpis nec efficitur porta, ex risus condimentum eros, eget dignissim dolor ante vel diam. Morbi sodales neque urna, eget varius dui dapibus in. Mauris mattis dolor tellus, at finibus nisi euismod et. Proin sodales ex ut tortor vulputate, ut vulputate lorem rhoncus.
+                            "></Label>
+                        <HorizontalStackLayout>
+
+                            <!--                         CheckBox Aceito Termos                               -->
+
+                            <CheckBox x:Name="TermosDeUso"
+                        IsChecked="{Binding Termos}"
+                        Color="#3D4DDE"
+                        />
+                            <Label Text="Eu Li e Aceito os Termos de Aluguel RentShopVT" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize="13"></Label>
+                        </HorizontalStackLayout>
+                        <Button
+                    IsEnabled="{Binding TermosAceitos}"
+                    Text="Enviar"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="#3D4DDE"
+                    Margin="0,20,0,0"
+                    Command="{Binding EnviarTerceiraEtapaCadastro}">
+                        </Button>
+                   
+
+                </VerticalStackLayout>
+               </ScrollView>
+
+                <!--                                                                            Selecão de Tipo                                                 -->
+
+                <VerticalStackLayout IsVisible="{Binding ViewQuartaParte}">
+
+
+                    <Label Text="Você possui CNPJ?" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="0,10,0,20" HorizontalTextAlignment="Center">
                     </Label>
 
-                    <!--                         Input Digitar Email                               -->
+                        <FlexLayout Wrap="NoWrap" JustifyContent="Center"> 
+                    <Button
+                            Text="Sim"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="#3D4DDE"
+                            Margin="0,0,10,0"
+                            WidthRequest="100"
+                            Command="{Binding EnviarTipoCadastroCnpj}">
+                    </Button>
 
-                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
-                        <Entry HeightRequest="60" Placeholder="Insira  o Email" TextColor="#3D4DDE" >
+                    <Button
+                            Text="Não"
+                            WidthRequest="100"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="#3D4DDE"
+                            Margin="10,0,0,0"
+                            Command="{Binding EnviarTipoCadastroCpf}">
+                    </Button>
+                        </FlexLayout>
+
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout IsVisible="{Binding ViewQuintaParte}">
+
+                    <!--                                                                            Finalização de Cadastro Pessoa com CNPJ                                           -->
+
+                    <VerticalStackLayout IsVisible="{Binding ViewFinalCnpj}">
+                        
+                        <Label Text="Digite o Nome da Empresa:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+
+                    <!--                         Input Digitar Nonm da Empresa                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira o Nome da Empresa" TextColor="#3D4DDE" Text="{Binding NomeEmpresa}" >
                         </Entry>
                     </Frame>
 
-                    <Label Text="Digite sua Senha:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    <Label Text="Digite seu CNPJ:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+
+                    <!--                         Input Digitar CNPJ                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira seu CNPJ" TextColor="#3D4DDE" Text="{Binding Cnpj}" >
+                        </Entry>
+                    </Frame>
+                        
+                   </VerticalStackLayout>
+                    
+                    
+                    
+                            <!--                                                                            Finalização de Cadastro Pessoa sem CNPJ                                                -->
+
+                    <VerticalStackLayout IsVisible="{Binding ViewFinalCpf}">
+
+                        <Label Text="Digite seu CPF:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
+
+                    <!--                         Input Digitar CPF                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira seu CPF" TextColor="#3D4DDE" Text="{Binding Cpf}">
+                        </Entry>
+                    </Frame>
+
+                    </VerticalStackLayout>
+
+                        <Label Text="Digite uma Senha:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
                     </Label>
 
                     <!--                         Input Digitar Senha                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
                         <Grid ColumnDefinitions="*" HeightRequest="40">
-                            <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="InserirSenha">
+                            <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="InserirSenha" Text="{Binding Senha}">
                             </Entry>
                             <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarSenha" Clicked="VizualizarSenha_Clicked">
 
@@ -73,43 +250,31 @@
 
                     <Label Text="Confirme sua Senha:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
                     </Label>
-                    
+
                     <!--                         Input Confirmar Senha                               -->
-                    
+
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
                         <Grid ColumnDefinitions="*" HeightRequest="40">
-                            <Entry HeightRequest="60" Placeholder="Confirmar Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="ConfirmarSenha">
+                            <Entry HeightRequest="60" Placeholder="Confirmar Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="ConfirmarSenha" Text="{Binding ConfirmarSenha}">
                             </Entry>
                             <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarConf" Clicked="VizualizarConf_Clicked">
-                                
+
                             </ImageButton>
                         </Grid>
 
                     </Frame>
-
-                    <HorizontalStackLayout>
-
-                        <!--                         CheckBox Venda Produtos                               -->
-
-                        <CheckBox x:Name="myCheckBox"
-                        IsChecked="false"
-                        Color="#3D4DDE"
-                         />
-                        <Label Text="Deseja Vender Produtos?" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"></Label>
-                    </HorizontalStackLayout>
                     <Button
-                    Text="Enviar"
-                    HorizontalOptions="FillAndExpand"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    BackgroundColor="#3D4DDE"
-                    Margin="0,20,0,0"
-                    >
+                            Text="Enviar"
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="#3D4DDE"
+                            Margin="0,20,0,0"
+                            Command="{Binding EnviarUltimaEtapaCadastro}">
                     </Button>
-                    
-                </StackLayout>
-            </Frame>
+                </VerticalStackLayout>
+            </StackLayout>
+        </Frame>
 
-        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

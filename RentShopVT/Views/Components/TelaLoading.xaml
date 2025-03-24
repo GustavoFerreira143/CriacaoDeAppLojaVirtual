@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopup:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+    x:Class="RentShopVT.Views.Components.TelaLoading"
+    BackgroundColor="Transparent"
+    >
+    <Grid BackgroundColor="Black" Opacity="0.7">
+        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+            <StackLayout Spacing="10" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="True" Color="#3D4DDE" WidthRequest="100" HeightRequest="100"/>
+
+                <Label Text="Carregando, Aguarde..." 
+                       TextColor="#3D4DDE" 
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</mopup:PopupPage>
