@@ -6,10 +6,6 @@
              Title="CadastrarUser"
              BackgroundColor="#E2FDFF">
 
-    <ContentPage.BindingContext>
-        <vm:CadastrarUserViewModel />
-    </ContentPage.BindingContext>
-
 
     <VerticalStackLayout>
         <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
@@ -117,7 +113,7 @@
 
 
 
-                <ScrollView VerticalOptions="StartAndExpand" HeightRequest="700" IsVisible="{Binding ViewTerceiraParte}">    
+                <ScrollView VerticalOptions="StartAndExpand" HeightRequest="650" IsVisible="{Binding ViewTerceiraParte}">    
                 <VerticalStackLayout>
 
                         <Label FontSize="15" TextColor="Black" Text="Termos de Aluguel RentShopVT:" FontAttributes="Bold"></Label>

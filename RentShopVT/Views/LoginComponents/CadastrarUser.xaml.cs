@@ -7,7 +7,7 @@ public partial class CadastrarUser : ContentPage
 	public CadastrarUser()
 	{
 		InitializeComponent();
-        BindingContext = new CadastrarUserViewModel();
+        BindingContext = new CadastrarUserViewModel(Navigation);
     }
 
     async private void VoltarLoginCadastro_Clicked(object sender, EventArgs e)

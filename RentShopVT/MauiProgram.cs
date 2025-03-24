@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.PlatformConfiguration;
+using Mopups.Hosting;
 
 namespace RentShopVT;
 
@@ -11,6 +12,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .ConfigureMopups()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{

@@ -16,7 +16,7 @@ private static string GerarToken()
 {
     var random = new Random();
     var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    var token = new string(Enumerable.Range(0, 6)
+    var token = new string(Enumerable.Range(0, 3)
         .Select(_ => caracteres[random.Next(caracteres.Length)])
         .ToArray());
 
@@ -56,7 +56,7 @@ private static string GerarToken()
         var token = GerarToken();
         
         await Task.Delay(500); // Simula um pequeno atraso (opcional)
-        if (emailDestinatario == "gustavo@gmail.com")
+        if (emailDestinatario != "")
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
