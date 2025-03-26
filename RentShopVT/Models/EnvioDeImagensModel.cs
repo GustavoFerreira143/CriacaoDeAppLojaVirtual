@@ -33,7 +33,7 @@ namespace RentShopVT.Models
                 };
                 
                 if (mimeType == null)
-                    return new Retorno { Status="400", Link = "Arquivo Inválido Enviado" }; // Arquivo não suportado
+                    return new Retorno { Status="400", Link = "Arquivo Inválido Enviado" }; 
 
                 long id = 0;
 
@@ -42,7 +42,7 @@ namespace RentShopVT.Models
                 string ID = userId.ToString();
 
                 if (string.IsNullOrEmpty(ID) || ID == "0")
-                    return new Retorno { Status = "400", Link = "Usuário deve Estar Logado" };// Se não houver ID, impede o envio
+                    return new Retorno { Status = "400", Link = "Usuário deve Estar Logado" };
 
                 using var stream = await foto.OpenReadAsync();
                 using var content = new MultipartFormDataContent();
@@ -51,7 +51,7 @@ namespace RentShopVT.Models
                 // Define o tipo de conteúdo correto
                 streamContent.Headers.ContentType = new MediaTypeHeaderValue(mimeType);
                 content.Add(streamContent, "imagem", foto.FileName);
-                content.Add(new StringContent(ID), "\"ID\""); // Adiciona o ID do usuário no envio
+                content.Add(new StringContent(ID), "\"ID\""); 
 
                 Console.WriteLine("📤 Enviando os seguintes dados:");
                 foreach (var item in content)
