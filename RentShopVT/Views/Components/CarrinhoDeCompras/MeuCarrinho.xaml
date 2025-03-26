@@ -29,7 +29,7 @@
                Margin="30,0,20,0"
                Grid.Column="0"/>
 
-            <Button Text="Logout"
+            <Button Text="Logout" x:Name="BotaoLoginLogout"
                BackgroundColor="White"
                TextColor="#3D4DDE"
                FontAttributes="Bold"
@@ -39,10 +39,11 @@
                HorizontalOptions="End"
                VerticalOptions="Center"
                Margin="0,0,20,0"
+               Clicked="Button_Clicked"
                Grid.Column="1"/>
 
         </Grid>
-        <ScrollView VerticalOptions="StartAndExpand">
+        <ScrollView VerticalOptions="FillAndExpand" x:Name="Logado" IsVisible="True">
 
             <StackLayout>
                 <Label Text="Produtos Adicionados:"
@@ -251,13 +252,52 @@
             </StackLayout>
             
         </ScrollView>
+
+        <Grid VerticalOptions="CenterAndExpand"  x:Name="NaoLogado"
+                         IsVisible="False">
+            <StackLayout 
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Image Source="exclamationoctagon.svg"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       VerticalOptions="Center"
+                       BackgroundColor="Transparent"/>
+
+                <Label Text="Usuário deve estar Logado" 
+                       TextColor="#3D4DDE" 
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" 
+                       VerticalOptions="Center"
+                       Margin="10"/>
+
+                <Label Text="Para Fazer o Login Clique no Botão Abaixo" 
+                       TextColor="#3D4DDE" 
+                       FontSize="12"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       Margin="0,0,0,10"/>
+
+                <Button Text="Login"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="#3D4DDE"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+
         <Frame Padding="10"
        BackgroundColor="#3D4DDE"
        CornerRadius="0"
        Margin="0"
        HasShadow="False"
        HeightRequest="90"
-       BorderColor="#3D4DDE">
+       BorderColor="#3D4DDE" x:Name="SubTotal" IsVisible="True">
             <VerticalStackLayout>
 
                 <Label Text="SubTotal:"

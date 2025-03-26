@@ -15,7 +15,7 @@ namespace RentShopVT.Models
             _httpClient = new HttpClient();
         }
 
-        public async Task<bool> InserirUsuario(string nome, string email, string senha, string cnpj, string nomeEmpresa, string cpf, bool termos)
+        public async Task<bool> InserirUsuario(string nome, string email,string telefone, string senha, string cnpj, string nomeEmpresa, string cpf, bool termos)
         {
             try
             {
@@ -23,6 +23,7 @@ namespace RentShopVT.Models
                 {
                     Nome = nome,
                     Email = email,
+                    Contato = string.IsNullOrEmpty(telefone) ? null : telefone,
                     Senha = senha,
                     CNPJ = string.IsNullOrEmpty(cnpj) ? null : cnpj,
                     NomeEmpresa = string.IsNullOrEmpty(nomeEmpresa) ? null : nomeEmpresa,

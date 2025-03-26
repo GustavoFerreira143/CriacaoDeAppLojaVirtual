@@ -62,8 +62,18 @@
                                 </Entry>
                             </Frame>
 
+                    <Label Text="Digite seu Numero para Contato:" FontAttributes="Bold" TextColor="Black" FontSize="15" Margin="5,10,0,10">
+                    </Label>
 
-                        <Button
+                    <!--                         Input Digitar Numero de Contato                               -->
+
+                    <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White">
+                        <Entry HeightRequest="60" Placeholder="Insira seu Telefone" TextColor="#3D4DDE" Text="{Binding Telefone}" Keyboard="Numeric">
+                        </Entry>
+                    </Frame>
+
+
+                    <Button
                             Text="Enviar"
                             HorizontalOptions="FillAndExpand"
                             TextColor="White"
@@ -199,7 +209,7 @@ Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat no
                     <!--                         Input Digitar Nonm da Empresa                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
-                        <Entry HeightRequest="60" Placeholder="Insira o Nome da Empresa" TextColor="#3D4DDE" Text="{Binding NomeEmpresa}" >
+                        <Entry HeightRequest="60" Placeholder="Insira o Nome da Empresa" TextColor="#3D4DDE" Text="{Binding NomeEmpresa}">
                         </Entry>
                     </Frame>
 
@@ -209,7 +219,7 @@ Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat no
                     <!--                         Input Digitar CNPJ                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
-                        <Entry HeightRequest="60" Placeholder="Insira seu CNPJ" TextColor="#3D4DDE" Text="{Binding Cnpj}" >
+                            <Entry HeightRequest="60" Placeholder="Insira seu CNPJ" TextColor="#3D4DDE" Text="{Binding Cnpj}" Keyboard="Numeric">
                         </Entry>
                     </Frame>
                         
@@ -227,7 +237,7 @@ Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat no
                     <!--                         Input Digitar CPF                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
-                        <Entry HeightRequest="60" Placeholder="Insira seu CPF" TextColor="#3D4DDE" Text="{Binding Cpf}">
+                            <Entry HeightRequest="60" Placeholder="Insira seu CPF" TextColor="#3D4DDE" Text="{Binding Cpf}" Keyboard="Numeric">
                         </Entry>
                     </Frame>
 

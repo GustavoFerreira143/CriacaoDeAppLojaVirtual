@@ -1,5 +1,6 @@
 using RentShopVT.Views.Components.HomePage;
 using RentShopVT.Views.LoginComponents;
+using RentShopVT.ViewModels;
 
 namespace RentShopVT.Views;
 
@@ -8,7 +9,9 @@ public partial class TelaLogin : ContentPage
 	public TelaLogin()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new LoginDeUsuarioViewModel(Navigation);
+
+    }
 
     async private void Voltar_Clicked(object sender, EventArgs e)
     {

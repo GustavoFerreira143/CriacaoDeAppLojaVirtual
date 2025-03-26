@@ -7,6 +7,7 @@
              Padding="0"
              NavigationPage.HasNavigationBar="False"
 >
+
     <VerticalStackLayout>
         <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
 
@@ -42,7 +43,7 @@
                     <!--                         Input Digitar Email                               -->
 
                     <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="#BFD7FF">
-                    <Entry HeightRequest="60" Placeholder="Insira  o Email" TextColor="#3D4DDE" >
+                    <Entry HeightRequest="60" Placeholder="Insira  o Email" TextColor="#3D4DDE" Text="{Binding Email}" >
                     </Entry>
                 </Frame>
 
@@ -54,7 +55,7 @@
 
                             <!--                         Input Digitar Senha                               -->
 
-                            <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="Senha">
+                            <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="Senha" Text="{Binding SenhaUser}" >
                             </Entry>
                             <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarSenha" Clicked="VizualizarSenha_Clicked">
 
@@ -68,7 +69,7 @@
                     FontAttributes="Bold"
                     BackgroundColor="#3D4DDE"
                     Margin="0,20,0,0"
-                    >
+                    Command="{Binding EnviarLogin}">
                 </Button>
                     <Label
                         Text="Clique para Recuperar Senha"

@@ -28,6 +28,9 @@ namespace RentShopVT.ViewModels
         private string emailEnviado;
 
         [ObservableProperty]
+        private string telefone;
+
+        [ObservableProperty]
         private string token;
 
         [ObservableProperty]
@@ -122,7 +125,14 @@ namespace RentShopVT.ViewModels
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Há campos não preenchidos", "Red"));
                 return;
             }
-
+            if(!string.IsNullOrWhiteSpace(Telefone))
+            {
+                if(telefone.Length < 10)
+                {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Telefone Inserido de Forma Incorreta", "Red"));
+                    return;
+                }
+            }
             if (!EmailValido(Email))
             {
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Email inválido. Verifique o formato.", "Red"));
@@ -329,11 +339,20 @@ namespace RentShopVT.ViewModels
                             Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", Verificacao.Message, "Red"));
                             return;
                         }
+
                 }
+                   if(!ValidarCPF(Cpf))
+                    {
+                        if (MopupService.Instance.PopupStack.Contains(popup))
+                            MopupService.Instance.PopAsync();
+
+                        Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "CPF Inválido Detectado", "Red"));
+                        return;
+                    }
             }
             if(!string.IsNullOrWhiteSpace(Cnpj) && Cnpj.Length == 14)
             {
-                    ResultadoOperacao Verificacao = await duplicidade.VerifiqueDuplicidades("CNPJ", Cnpj);
+               ResultadoOperacao Verificacao = await duplicidade.VerifiqueDuplicidades("CNPJ", Cnpj);
                 if (Verificacao.Success)
                 {
                     await MainThread.InvokeOnMainThreadAsync(() =>
@@ -343,7 +362,7 @@ namespace RentShopVT.ViewModels
                     });
                         if (Verificacao.Message == "Valor Duplicado Encontrado")
                         {
-                            Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro de Duplicidade", "O CPF Inserido já existe", "Red"));
+                            Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro de Duplicidade", "O CNPJ Inserido já existe", "Red"));
                             return;
                         }
                         else
@@ -352,7 +371,15 @@ namespace RentShopVT.ViewModels
                             return;
                         }
                     }
-            }
+                    if (!ValidarCNPJ(Cnpj))
+                    {
+                        if (MopupService.Instance.PopupStack.Contains(popup))
+                            MopupService.Instance.PopAsync();
+
+                        Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "CNPJ Inválido Detectado", "Red"));
+                        return;
+                    }
+                }
             }
             catch(Exception ex)
             {
@@ -371,7 +398,7 @@ namespace RentShopVT.ViewModels
             //-----------------------------------------------------------------Envio dos Dados para Armazenamento----------------------------------------------------------------------------
 
             RecebeCadastroModel userRepository = new RecebeCadastroModel();
-            bool resultado = await userRepository.InserirUsuario(Nome, Email, Senha, Cnpj, NomeEmpresa, Cpf, Termos);
+            bool resultado = await userRepository.InserirUsuario(Nome, Email, Telefone, Senha, Cnpj, NomeEmpresa, Cpf, Termos);
 
             if (resultado)
             {
@@ -402,6 +429,71 @@ namespace RentShopVT.ViewModels
         {
             return senha.Any(ch => !char.IsLetterOrDigit(ch));
         }
+        public static bool ValidarCPF(string cpf)
+        {
+            cpf = cpf.Replace(".", "").Replace("-", "").Trim();
 
+            // Verifica se o CPF tem 11 caracteres
+            if (cpf.Length != 11) return false;
+
+            // CPF não pode ser uma sequência de números repetidos
+            if (cpf.Distinct().Count() == 1) return false;
+
+            // Cálculo do primeiro dígito verificador
+            int soma = 0;
+            int[] multiplicador1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+            for (int i = 0; i < 9; i++)
+                soma += int.Parse(cpf[i].ToString()) * multiplicador1[i];
+
+            int resto = soma % 11;
+            int digito1 = (resto < 2) ? 0 : 11 - resto;
+
+            // Cálculo do segundo dígito verificador
+            soma = 0;
+            int[] multiplicador2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(cpf[i].ToString()) * multiplicador2[i];
+
+            resto = soma % 11;
+            int digito2 = (resto < 2) ? 0 : 11 - resto;
+
+            // Compara os dois dígitos verificadores calculados com os fornecidos
+            return cpf.EndsWith(digito1.ToString() + digito2.ToString());
+        }
+        public static bool ValidarCNPJ(string cnpj)
+        {
+            cnpj = cnpj.Replace(".", "").Replace("/", "").Replace("-", "").Trim();
+
+            // Verifica se o CNPJ tem 14 caracteres
+            if (cnpj.Length != 14) return false;
+
+            // CNPJ não pode ser uma sequência de números repetidos
+            if (cnpj.Distinct().Count() == 1) return false;
+
+            // Cálculo do primeiro dígito verificador
+            int[] multiplicador1 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int soma = 0;
+
+            for (int i = 0; i < 12; i++)
+                soma += int.Parse(cnpj[i].ToString()) * multiplicador1[i];
+
+            int resto = soma % 11;
+            int digito1 = (resto < 2) ? 0 : 11 - resto;
+
+            // Cálculo do segundo dígito verificador
+            int[] multiplicador2 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            soma = 0;
+
+            for (int i = 0; i < 13; i++)
+                soma += int.Parse(cnpj[i].ToString()) * multiplicador2[i];
+
+            resto = soma % 11;
+            int digito2 = (resto < 2) ? 0 : 11 - resto;
+
+            // Compara os dois dígitos verificadores calculados com os fornecidos
+            return cnpj.EndsWith(digito1.ToString() + digito2.ToString());
+        }
     }
 }

@@ -78,6 +78,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="ViewModels\EnvioDImagensViewModel.cs" />
+	  <Compile Remove="Views\Components\ErroPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Views\Components\ErroPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Enviroments\.env" />
 	</ItemGroup>
 
