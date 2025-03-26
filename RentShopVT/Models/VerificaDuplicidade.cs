@@ -61,13 +61,13 @@ namespace RentShopVT.Models
                     Message = "Servidor Demorou muito para Responder"
                 };
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                Console.WriteLine($"Erro na requisição HTTP: {ex.Message}");
+                Console.WriteLine($"Erro 404: Recurso não encontrado - {ex.Message}");
                 return new ResultadoOperacao
                 {
                     Success = false,
-                    Message = "Autorizado"
+                    Message = "Não encontrado"
                 };
             }
             catch (Exception ex)

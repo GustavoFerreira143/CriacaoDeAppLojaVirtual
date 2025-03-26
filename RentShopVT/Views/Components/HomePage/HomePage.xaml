@@ -29,7 +29,7 @@
                Margin="30,0,20,0"
                Grid.Column="0"/>
 
-            <Button Text="Login"
+            <Button Text="Login" x:Name="BotaoLoginLogout"
                BackgroundColor="White"
                TextColor="#3D4DDE"
                FontAttributes="Bold"
