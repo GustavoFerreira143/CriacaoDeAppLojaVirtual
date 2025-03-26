@@ -57,7 +57,7 @@
                         FontAttributes="Bold"
                         HorizontalTextAlignment="Center"   >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenUrlCommand}" />
+                            <TapGestureRecognizer x:Name="EnviarFoto" Tapped="EnviarFoto_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
                     <!-- Nome de Usuário -->

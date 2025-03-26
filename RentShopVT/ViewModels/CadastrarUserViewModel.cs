@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
@@ -8,8 +7,6 @@ using CommunityToolkit.Mvvm.Input;
 using Mopups.Services;
 using RentShopVT.Models;
 using RentShopVT.Views.Components;
-using Mopups.Pages;
-using Mopups.Services;
 
 namespace RentShopVT.ViewModels
 {

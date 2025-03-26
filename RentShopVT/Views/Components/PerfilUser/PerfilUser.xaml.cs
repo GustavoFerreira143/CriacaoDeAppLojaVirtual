@@ -1,8 +1,7 @@
 using CommunityToolkit.Maui.Views;
 using Mopups.Services;
 using RentShopVT.ViewModels;
-using RentShopVT.Views.Components;
-using RentShopVT.Views.Components.CarrinhoDeCompras;
+using RentShopVT.Models;
 
 namespace RentShopVT.Views.Components.PerfilUser;
 
@@ -18,6 +17,7 @@ public partial class PerfilUser : ContentPage
     {
         base.OnAppearing();
         Console.WriteLine("Disparou");
+        Console.WriteLine(Preferences.Get("FotoPerfil", "personcicle.svg"));
         bool usuarioEstaLogado = VerificaSessao();
         VerificaLogado(usuarioEstaLogado);
         if (usuarioEstaLogado)
@@ -111,5 +111,17 @@ public partial class PerfilUser : ContentPage
 
         VerificaLogado(false);
     }
+    //-----------------------------------------------------------------------------------------------------------Função Envio de Imagem Perfil--------------------------------------------------------------
+    async private void EnviarFoto_Tapped(object sender, TappedEventArgs e)
+    {
+        EnvioDeImagensViewModel foto = new EnvioDeImagensViewModel();
+       
+        string imagem = await foto.SelecionarImagemAsync();
 
+        if (imagem == "Sucesso")
+        {
+            string FotoPerfil = Preferences.Get("FotoPerfil", "personcicle.svg");
+            FotoPerfilUser.Source = FotoPerfil;
+        }
+    }
 }

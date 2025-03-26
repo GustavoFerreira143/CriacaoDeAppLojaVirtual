@@ -1,4 +1,3 @@
-using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace RentShopVT.Views.Components.SearchPage;
 

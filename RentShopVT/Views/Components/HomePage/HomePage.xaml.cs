@@ -1,5 +1,3 @@
-
-using Azure;
 using CommunityToolkit.Maui.Views;
 using Mopups.Services;
 

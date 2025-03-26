@@ -1,25 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Azure;
+using CommunityToolkit.Maui.Views;
+using RentShopVT.Models;
+using RentShopVT.Views.Components;
+using Mopups.Services;
 
 namespace RentShopVT.ViewModels
 {
     class EnvioDeImagensViewModel
     {
-
- //----------------------------------------------------------------------------------------------------------Envio de Foto de Perfil--------------------------------------------------------------
-
-        public async Task<FileResult> SelecionarImagemAsync()
+        public EnvioDeImagensViewModel()
         {
+
+        }
+        //----------------------------------------------------------------------------------------------------------Envio de Foto de Perfil--------------------------------------------------------------
+
+        public async Task<string> SelecionarImagemAsync()
+        {
+
             var foto = await FilePicker.PickAsync(new PickOptions
             {
                 PickerTitle = "Selecione uma imagem",
                 FileTypes = FilePickerFileType.Images
             });
 
-            return foto;
+
+            EnvioDeImagensModel Enviar = new EnvioDeImagensModel();
+
+            Retorno resposta = await Enviar.EnviarImagemAsync(foto);
+
+            if (resposta.Status == "Sucesso")
+            {
+
+                Preferences.Set("FotoPerfil", "http://192.168.100.63:5098"+resposta.Link);
+                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", "Imagem Alterada Com Sucesso", "Green"));
+                return resposta.Status;
+            }
+            else
+            {
+                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", resposta.Link, "Red"));
+                return resposta.Status;
+            }
         }
     }
 }
