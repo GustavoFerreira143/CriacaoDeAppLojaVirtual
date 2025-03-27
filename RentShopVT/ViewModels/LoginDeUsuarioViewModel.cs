@@ -71,7 +71,6 @@ namespace RentShopVT.ViewModels
 
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", $"Usuário Vinculado com Sucesso", "Green"));
 
-
                 //--------------------------------------------------------------------------------------Salvando Informações do Usuário-----------------------------------------------------------------------------------
                 Preferences.Set("Id", response.Id);
                 Preferences.Set("Nome", response.Nome);
@@ -80,7 +79,7 @@ namespace RentShopVT.ViewModels
                 Preferences.Set("CNPJ", response.CNPJ);
                 Preferences.Set("CPF", response.CPF);
                 Preferences.Set("AutorizadoVenda", response.AutorizadoVenda);
-                Preferences.Set("FotoPerfil", response.FotoPerfil);
+                Preferences.Set("FotoPerfil", "http://192.168.100.63:5098" + response.FotoPerfil);
                 Preferences.Set("TelefoneUser", response.Contato);
                 Preferences.Set("UsuarioLogado", true);
 

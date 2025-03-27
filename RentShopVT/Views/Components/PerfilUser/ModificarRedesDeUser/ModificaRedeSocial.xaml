@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser.ModificaRedeSocial"
+             BackgroundColor="#E2FDFF">
+    <VerticalStackLayout>
+        <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
+
+            <ImageButton 
+                    x:Name="Voltar"
+                    Clicked="Voltar_Clicked"
+                    Source="arrowleft.svg"
+                    WidthRequest="35"
+                    Margin="5,9,0,0"
+                    CornerRadius="30"
+                    BackgroundColor="#E2FDFF"
+                    Padding="2"
+                    VerticalOptions="Center"
+                    HeightRequest="35"
+                   >
+            </ImageButton>
+            <Label
+           Text="Altera Rede Social"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           VerticalOptions="Center"
+           HorizontalOptions="Start"
+           Margin="5,0,0,0"
+           />
+        </FlexLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <Label Text="Selecione uma Rede Social " TextColor="#3D4DDE" FontSize="15" FontAttributes="Bold" Margin="10,10,0,0"></Label>
+                <Picker Title="Selecione suas Redes para Vizualização Máximo: 4"
+        ItemsSource="{Binding Opcoes}"
+        SelectedItem="{Binding OpcaoSelecionada, Mode=TwoWay}"
+         Margin="9,0,10,0"/>
+                
+            </StackLayout>
+            
+            
+        </ScrollView>       
+ 
+    </VerticalStackLayout>
+</ContentPage>

@@ -2,6 +2,7 @@ using CommunityToolkit.Maui.Views;
 using Mopups.Services;
 using RentShopVT.ViewModels;
 using RentShopVT.Models;
+using RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
 
 namespace RentShopVT.Views.Components.PerfilUser;
 
@@ -16,8 +17,6 @@ public partial class PerfilUser : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        Console.WriteLine("Disparou");
-        Console.WriteLine(Preferences.Get("FotoPerfil", "personcicle.svg"));
         bool usuarioEstaLogado = VerificaSessao();
         VerificaLogado(usuarioEstaLogado);
         if (usuarioEstaLogado)
@@ -123,5 +122,10 @@ public partial class PerfilUser : ContentPage
             string FotoPerfil = Preferences.Get("FotoPerfil", "personcicle.svg");
             FotoPerfilUser.Source = FotoPerfil;
         }
+    }
+
+    async private void AbreTelaRedes_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new ModificaRedeSocial());
     }
 }
