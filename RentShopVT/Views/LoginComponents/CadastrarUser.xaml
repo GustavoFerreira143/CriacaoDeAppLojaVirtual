@@ -7,7 +7,7 @@
              BackgroundColor="#E2FDFF">
 
 
-    <VerticalStackLayout>
+    <StackLayout>
         <FlexLayout JustifyContent="Start" AlignContent="Center"  BackgroundColor="#3D4DDE" HeightRequest="60" >
 
             <ImageButton 
@@ -33,7 +33,8 @@
            Margin="5,0,0,0"
            />
         </FlexLayout>
-        <Frame Margin="15,15" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True" IsVisible="True">
+        <ScrollView VerticalOptions="StartAndExpand"  >
+            <Frame Margin="15,15" BackgroundColor="#BFD7FF" Padding="15" CornerRadius="20" BorderColor="#BFD7FF" HasShadow="True" IsVisible="True">
             <StackLayout >
 
                 <!--                                                                            Inicio Cadastrar Conta                                                                 -->
@@ -122,9 +123,9 @@
             <!--                                                                            Termos de Uso APP Rento Shop VT                                                 -->
 
 
+     
 
-                <ScrollView VerticalOptions="StartAndExpand" HeightRequest="650" IsVisible="{Binding ViewTerceiraParte}">    
-                <VerticalStackLayout>
+                    <StackLayout IsVisible="{Binding ViewTerceiraParte}">
 
                         <Label FontSize="15" TextColor="Black" Text="Termos de Aluguel RentShopVT:" FontAttributes="Bold"></Label>
                         <Label  LineBreakMode="WordWrap" FontSize="12" TextColor="Black" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque volutpat turpis, in porttitor dolor facilisis eget. Donec orci dolor, fringilla id diam id, venenatis malesuada nibh. Fusce ac lorem sit amet purus bibendum pulvinar. Suspendisse posuere orci vitae congue ultrices. Nulla consequat tincidunt congue. Duis id sollicitudin odio. Phasellus cursus pellentesque odio. Vestibulum quis suscipit erat. Integer a libero faucibus, sollicitudin libero non, dapibus tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris bibendum arcu vitae lectus mollis, ut semper dolor egestas.
@@ -159,8 +160,8 @@ Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat no
                         </Button>
                    
 
-                </VerticalStackLayout>
-               </ScrollView>
+                </StackLayout>
+
 
                 <!--                                                                            Selecão de Tipo                                                 -->
 
@@ -285,6 +286,6 @@ Phasellus feugiat elit arcu, sit amet sodales augue vehicula a. Morbi et erat no
                 </VerticalStackLayout>
             </StackLayout>
         </Frame>
-
-    </VerticalStackLayout>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

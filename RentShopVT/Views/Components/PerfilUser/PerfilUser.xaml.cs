@@ -8,9 +8,11 @@ namespace RentShopVT.Views.Components.PerfilUser;
 
 public partial class PerfilUser : ContentPage
 {
-	public PerfilUser()
+    private readonly ModificaRedeSocialViewModel _viewModel;
+    public PerfilUser()
 	{
 		InitializeComponent();
+        BindingContext = new PerfilDeUsuarioViewModel(); 
 	}
 
     //--------------------------------------------------------------------------------------------Executa a Função quando a tela é exibida---------------------------------------------------------
@@ -126,6 +128,7 @@ public partial class PerfilUser : ContentPage
 
     async private void AbreTelaRedes_Tapped(object sender, TappedEventArgs e)
     {
+
         await Navigation.PushModalAsync(new ModificaRedeSocial());
     }
 }

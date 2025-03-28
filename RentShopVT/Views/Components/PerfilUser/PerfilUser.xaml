@@ -105,13 +105,13 @@
                                 <Label Text="Redes Sociais:" FontAttributes="Bold" FontSize="14" Margin="0,0,0,0" TextColor="Black"/>
                                 <HorizontalStackLayout Spacing="40" Margin="0,5,0,0">
                                     <VerticalStackLayout>
-                                        <ImageButton Source="personcircle.svg" Aspect="AspectFill" WidthRequest="50" HeightRequest="50" Command="{Binding OpenFacebookCommand}"/>
-                                        <Label Text="Linkedin"
+                                        <ImageButton Source="linkedin.svg" Aspect="AspectFill" WidthRequest="50" HeightRequest="50" Command="{Binding AbrirLink}"/>
+                                        <Label Text="Linkedin" x:Name="Linkedin"
                                                HorizontalTextAlignment="Center" TextColor="Black"></Label>
                                     </VerticalStackLayout>
                                     <VerticalStackLayout>
-                                        <ImageButton Source="personcircle.svg" WidthRequest="50" Aspect="AspectFill" HeightRequest="50" Command="{Binding OpenFacebookCommand}"/>
-                                        <Label Text="GitHub" HorizontalTextAlignment="Center" TextColor="Black"></Label>
+                                        <ImageButton Source="github.svg" WidthRequest="50" Aspect="AspectFill" HeightRequest="50" Command="{Binding AbrirLink}"/>
+                                        <Label Text="GitHub" x:Name="Github" HorizontalTextAlignment="Center" TextColor="Black"></Label>
                                     </VerticalStackLayout>
 
                                     

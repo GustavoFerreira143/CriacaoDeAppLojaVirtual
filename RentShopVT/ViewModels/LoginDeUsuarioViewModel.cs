@@ -44,9 +44,9 @@ namespace RentShopVT.ViewModels
                 {
                     VerificaDuplicidade duplicidade = new VerificaDuplicidade();
 
-                    var popup = new TelaLoading();
+                var popup = new TelaLoading();
 
-                    await MainThread.InvokeOnMainThreadAsync(() =>
+                await MainThread.InvokeOnMainThreadAsync(() =>
                     {
                         MopupService.Instance.PushAsync(popup);
                     });

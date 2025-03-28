@@ -112,6 +112,9 @@
 	  <MauiXaml Update="Views\Components\PerfilUser\ModificarRedesDeUser\ModificaRedeSocial.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\PerfilUser\ModificarRedesDeUser\PopupSelecionarRede.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\PerfilUser\PerfilUser.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

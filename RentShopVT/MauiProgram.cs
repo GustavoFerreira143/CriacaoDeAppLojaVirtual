@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Mopups.Hosting;
+using RentShopVT.ViewModels;
 
 namespace RentShopVT;
 
@@ -18,7 +19,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+			})
+            .Services.AddSingleton<ModificaRedeSocialViewModel>();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

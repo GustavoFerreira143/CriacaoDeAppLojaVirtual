@@ -1,3 +1,4 @@
+using RentShopVT.ViewModels;
 namespace RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
 
 public partial class ModificaRedeSocial : ContentPage
@@ -5,7 +6,16 @@ public partial class ModificaRedeSocial : ContentPage
 	public ModificaRedeSocial()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new ModificaRedeSocialViewModel();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ModificaRedeSocialViewModel modelo = new ModificaRedeSocialViewModel();
+        modelo.AtualizarRedesSociais();
+    }
+
     async private void Voltar_Clicked(object sender, EventArgs e)
     {
 
