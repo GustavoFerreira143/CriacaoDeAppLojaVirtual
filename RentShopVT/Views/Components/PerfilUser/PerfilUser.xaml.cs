@@ -3,6 +3,8 @@ using Mopups.Services;
 using RentShopVT.ViewModels;
 using RentShopVT.Models;
 using RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
+using GoogleGson;
+using System.Text.Json;
 
 namespace RentShopVT.Views.Components.PerfilUser;
 
@@ -28,6 +30,76 @@ public partial class PerfilUser : ContentPage
             string NomeEmpresa = Preferences.Get("NomeEmpresa", "Sem Empresa Especificada");
             string FotoPerfil = Preferences.Get("FotoPerfil", "personcicle.svg");
             string Telefone = Preferences.Get("TelefoneUser", "+00 00 00000-0000");
+
+            //-----------------------------------------------------------------------------------------------------Adiciona Icone Redes Sociais-----------------------------------------------------------------------
+
+            string json = Preferences.Get("RedesSociais", "");
+
+            if (json != "" && json != "{}")
+            {
+                var objeto = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json);
+
+                if (objeto != null)
+                {
+                    RedesHorizontalStack.Children.Clear();
+
+                    foreach (var item in objeto)
+                    {
+                        string nomeRedeSocial = item.Key;
+                        List<string> dadosRede = item.Value;
+
+                        VerticalStackLayout verticalLayout = new VerticalStackLayout
+                        {
+                            Spacing = 5,
+                            HorizontalOptions = LayoutOptions.Center
+                        };
+
+                        ImageButton imageButton = new ImageButton
+                        {
+                            Source = dadosRede[0], 
+                            WidthRequest = 50,
+                            HeightRequest = 50,
+                            Aspect = Aspect.Fill,
+                        };
+
+                        imageButton.Clicked += async (sender, e) =>
+                        {
+                            string url = dadosRede[1] + dadosRede[2]; 
+                            await Launcher.OpenAsync(url); 
+                        };
+
+
+                        Label label = new Label
+                        {
+                            Text = nomeRedeSocial,
+                            HorizontalTextAlignment = TextAlignment.Center,
+                            TextColor = Colors.Black
+                        };
+
+ 
+                        verticalLayout.Children.Add(imageButton);
+                        verticalLayout.Children.Add(label);
+
+                        RedesHorizontalStack.Children.Add(verticalLayout);
+                    }
+                }
+            }
+            else
+            {
+                RedesHorizontalStack.Children.Clear();
+                Label label = new Label
+                {
+                    Text = "Nada Adicionado",
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    TextColor = Colors.Black,
+                    WidthRequest = 300,
+                    HeightRequest = 70,
+                    FontSize = 15,
+                    FontAttributes = FontAttributes.Bold,
+                    VerticalTextAlignment = TextAlignment.Center
+                };
+                RedesHorizontalStack.Children.Add(label);
+            }
             NomeUsuario.Text = Nome;
             EmailUser.Text = Email;
             NomeEmpresaUser.Text = NomeEmpresa;

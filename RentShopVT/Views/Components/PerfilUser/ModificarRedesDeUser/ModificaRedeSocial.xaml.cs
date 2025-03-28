@@ -6,13 +6,16 @@ public partial class ModificaRedeSocial : ContentPage
 	public ModificaRedeSocial()
 	{
 		InitializeComponent();
-        BindingContext = new ModificaRedeSocialViewModel();
+        BindingContext = new ModificaRedeSocialViewModel(Navigation);
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        ModificaRedeSocialViewModel modelo = new ModificaRedeSocialViewModel();
+        ModificaRedeSocialViewModel modelo = new ModificaRedeSocialViewModel(Navigation);
+
+
+
         modelo.AtualizarRedesSociais();
     }
 

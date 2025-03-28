@@ -18,6 +18,7 @@ CREATE TABLE RedesSociais(
     id BIGINT IDENTITY(1,1) PRIMARY KEY,
     Usuario BIGINT NOT NULL,
     NomeRede Varchar(255) NOT NULL,
+    IconeRede Varchar(100) NOT NULL,
     LinkRede Varchar(255) NOT NULL,
     FOREIGN KEY (Usuario) REFERENCES Usuarios(id)
 );

@@ -5,15 +5,18 @@ using Mopups.Services;
 using RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
 using System.Windows.Input;
 using RentShopVT.Views.Components;
+using System.Text.RegularExpressions;
+using System.Text.Json;
 
 namespace RentShopVT.ViewModels
 {
     public partial class ModificaRedeSocialViewModel : ObservableObject
     {
+        public INavigation _navigation;
         public ICommand EnviarRedesAtualizadas { get; }
         public ICommand ExibirSelecaoRedeSocial { get; }
         public ICommand FecharPopups { get; }
-        //--------------------------------------------------------------Controle de Visibilidade das Redes Sociais para Lógica-----------------------------------------------
+        //--------------------------------------------------------------------Controle de Visibilidade das Redes Sociais para Lógica--------------------------------------------------------
 
         // Propriedades das redes sociais
         [ObservableProperty] private bool linkedin;
@@ -25,7 +28,7 @@ namespace RentShopVT.ViewModels
         [ObservableProperty] private bool tikTok;
         [ObservableProperty] private bool youtube;
 
-
+        //----------------------------------------------------------------------------Textos fixos dos Itens---------------------------------------------------------------------------------
         [ObservableProperty] private string linkedinText;
         [ObservableProperty] private string gitHubText;
         [ObservableProperty] private string facebookText;
@@ -34,6 +37,15 @@ namespace RentShopVT.ViewModels
         [ObservableProperty] private string whatsAppText;
         [ObservableProperty] private string tikTokText;
         [ObservableProperty] private string youtubeText;
+        //-------------------------------------------------------------------------------------------Entrys Com os Links----------------------------------------------------------------------------
+        [ObservableProperty] private string valorWhatsApp;
+        [ObservableProperty] private string valorTikTok;
+        [ObservableProperty] private string valorYoutube;
+        [ObservableProperty] private string valorTwitter;
+        [ObservableProperty] private string valorFacebook;
+        [ObservableProperty] private string valorGitHub;
+        [ObservableProperty] private string valorLinkedin;
+        [ObservableProperty] private string valorInstagram;
 
         //------------------------------------------------------------------------------Redes Sociais que podem Ser Selecionadas------------------------------------------------------------
 
@@ -48,9 +60,11 @@ namespace RentShopVT.ViewModels
 
         private int Contagem { get; set; }
         private int RedesSelecionadas { get; set; }
-        public ModificaRedeSocialViewModel()
+        public ModificaRedeSocialViewModel(INavigation navigation)
         {
-//--------------------------------------------------------------------------------------------Textos das Redes Sociais Manipulaveis---------------------------------------------------------
+            //--------------------------------------------------------------------------------------------Textos das Redes Sociais Manipulaveis---------------------------------------------------------
+            _navigation = navigation;
+
             LinkedinText = "https://www.linkedin.com/in/";
             GitHubText = "https://github.com/";
             FacebookText = "https://www.facebook.com/";
@@ -80,90 +94,140 @@ namespace RentShopVT.ViewModels
             TikTokUso = Preferences.Get("Tiktok", false);
             YoutubeUso = Preferences.Get("Youtube", false);
 
+
+            string json = Preferences.Get("RedesSociais", "");
+
+            if (json != "" && json != "{}")
+            {
+                var objeto = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json);
+
+                if (objeto != null)
+                {
+                    foreach (var itens in objeto)
+                    {
+                        // Preencher o valor com base na chave
+                        switch (itens.Key)
+                        {
+                            case "Linkedin":
+                                ValorLinkedin = itens.Value[2];
+                                Linkedin = true;
+                                LinkedinUso = true;
+                                break;
+                            case "GitHub":
+                                ValorGitHub = itens.Value[2];
+                                GitHub = true;
+                                GitHubUso = true;
+                                break;
+                            case "Facebook":
+                                ValorFacebook = itens.Value[2];
+                                Facebook = true;
+                                FacebookUso = true;
+                                break;
+                            case "Instagram":
+                                ValorInstagram = itens.Value[2];
+                                Instagram = true;
+                                InstagramUso = true;
+                                break;
+                            case "Twitter":
+                                ValorTwitter = itens.Value[2];
+                                Twitter = true;
+                                TwitterUso = true;
+                                break;
+                            case "WhatsApp":
+                                ValorWhatsApp = itens.Value[2];
+                                WhatsApp = true;
+                                WhatsAppUso = true;
+                                break;
+                            case "TikTok":
+                                ValorTikTok = itens.Value[2];
+                                TikTok = true;
+                                TikTokUso = true;
+                                break;
+                            case "Youtube":
+                                ValorYoutube = itens.Value[2];
+                                Youtube = true;
+                                YoutubeUso = true;
+                                break;
+                        }
+                    }
+                }
+            }
             ExibirSelecaoRedeSocial = new RelayCommand(async () => await AbrePopUp());
             FecharPopups = new RelayCommand(async () => await FecharPopup());
             EnviarRedesAtualizadas = new RelayCommand(async () => await AtualizaRedesSociaisSelecionadas());
         }
-
+//----------------------------------------------------------------------------------------------------Atualiza Rede Sociais--------------------------------------------------------------------------------------------
         public async Task AtualizaRedesSociaisSelecionadas()
         {
-            List<string> RedesEscolhidas = new List<string>();
-            RedesSelecionadas = 0;
+            var redesEscolhidas = new Dictionary<string, List<string>>();
+            int redesSelecionadas = 0;
 
-            if(Linkedin)
+            // Lista de redes sociais com os textos fixos e valores correspondentes
+            var redes = new List<(bool Selecionado,string Nome, string imagem, string Texto, string Valor)>
+    {
+        (Linkedin,"Linkedin", "linkedin.svg", LinkedinText, ValorLinkedin),
+        (GitHub,"GitHub", "github.svg", GitHubText, ValorGitHub),
+        (Facebook,"Facebook", "facebook.svg", FacebookText, ValorFacebook),
+        (Instagram,"Instagram", "instagram.svg", InstagramText, ValorInstagram),
+        (Twitter,"Twitter","twitterx.svg", TwitterText, ValorTwitter),
+        (WhatsApp,"WhatsApp", "whatsapp.svg", WhatsAppText, ValorWhatsApp),
+        (TikTok,"TikTok", "tiktok.svg", TikTokText, ValorTikTok),
+        (Youtube,"Youtube", "youtube.svg", YoutubeText, ValorYoutube)
+    };
+
+            foreach (var rede in redes)
             {
-                RedesSelecionadas++;
-                RedesEscolhidas.Add("Linkedin");
-            }
-            if (GitHub)
-            {
-                RedesSelecionadas++;
-                RedesEscolhidas.Add("GitHub");
-            }
-            if (Facebook)
-            {
-                RedesSelecionadas++;
-                RedesEscolhidas.Add("Facebook");
-            }
-            if (Instagram)
-            {
-                RedesSelecionadas++;
-                RedesEscolhidas.Add("Instagram");
-            }
-            if (Twitter)
-            {
-                if(RedesSelecionadas < 4)
+                if (rede.Selecionado)
                 {
-                    RedesSelecionadas++;
-                    RedesEscolhidas.Add("Twitter");
-                }
-                else
-                {
-                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", "Limite de Rede Sociais Atingido", "Red"));
-                    return;
-                }
-            }
-            if (WhatsApp)
-            {
-                if (RedesSelecionadas < 4)
-                {
-                    RedesSelecionadas++;
-                    RedesEscolhidas.Add("WhatsApp");
-                }
-                else
-                {
-                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", "Limite de Rede Sociais Atingido", "Red"));
-                    return;
+                    if (redesSelecionadas >= 4)
+                    {
+                        Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", "Limite de Rede Sociais Atingido, Retire Alguma", "Red"));
+                        return ;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(rede.Valor))
+                    {
+                        Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", $"O campo '{rede.Nome}' está vazio. Insira um link.", "Red"));
+                        return ;
+                    }
+                    var valores = new List<string>();
+                    string conteudo = SanitizarNomeUsuario(rede.Valor);
+
+                    valores.Add(rede.imagem);
+                    valores.Add(rede.Texto);
+                    valores.Add(rede.Valor);
+
+                    redesEscolhidas.Add(rede.Nome, valores);
+                    redesSelecionadas++;
                 }
             }
-            if(TikTok)
+            string json = JsonSerializer.Serialize(redesEscolhidas);
+            Preferences.Set("RedesSociais",json);
+            Console.WriteLine(json);
+
+            var popup = new TelaLoading();
+
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                if (RedesSelecionadas < 4)
-                {
-                    RedesSelecionadas++;
-                    RedesEscolhidas.Add("TikTok");
-                }
-                else
-                {
-                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", "Limite de Rede Sociais Atingido", "Red"));
-                    return;
-                }
-            }
-            if (Youtube)
+                MopupService.Instance.PushAsync(popup);
+            });
+
+            await Task.Delay(2000);
+
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                if (RedesSelecionadas < 4)
-                {
-                    RedesSelecionadas++;
-                    RedesEscolhidas.Add("Youtube");
-                }
-                else
-                {
-                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", "Limite de Rede Sociais Atingido", "Red"));
-                    return;
-                }
-            }
+                if (MopupService.Instance.PopupStack.Contains(popup))
+                    MopupService.Instance.PopAsync();
+            });
+
+            Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", $"Redes Sociais Salvas Com Sucesso", "Green"));
+            _navigation.PopModalAsync();
+            return ;
         }
-
+        public string SanitizarNomeUsuario(string nomeUsuario)
+        {
+            return Regex.Replace(nomeUsuario, @"[^a-zA-Z0-9_.-]", "");
+        }
 
         //-------------------------------------------------------------------------------------Abre e Fecha PopUp de Seleção de redes Sociais---------------------------------------------------------
         public async Task AbrePopUp()
