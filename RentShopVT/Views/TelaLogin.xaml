@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentShopVT.Views.TelaLogin"
              Title="Login de Usuário"
-             BackgroundColor="#E2FDFF"
+             BackgroundColor="#3D4DDE"
              Padding="0"
              NavigationPage.HasNavigationBar="False"
 >

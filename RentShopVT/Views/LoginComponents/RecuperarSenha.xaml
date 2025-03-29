@@ -4,7 +4,7 @@
              x:Class="RentShopVT.Views.LoginComponents.RecuperarSenha"
              xmlns:vm="clr-namespace:RentShopVT.ViewModels"
              Title="RecuperarSenha"
-             BackgroundColor="#E2FDFF">
+             BackgroundColor="#3D4DDE">
     
     <ContentPage.BindingContext>
         <vm:RecuperaSenhaViewModel />
@@ -44,7 +44,7 @@
                 <StackLayout>
                     <VerticalStackLayout IsVisible="{Binding ViewEmail}">
                         
-                <Label Text="Digite Email para Recuperação:" FontSize="15" FontAttributes="Bold"></Label>
+                <Label Text="Digite seu Email para Recuperação:" FontSize="15" FontAttributes="Bold"></Label>
 
                         <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White" Margin="0,20,0,20">
 
@@ -75,19 +75,29 @@
                     
                     <VerticalStackLayout IsVisible="{Binding ViewTrocaSenha}">
 
-                            <Label Text="Digite uma Nova Senha" FontSize="15" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Black"></Label>
-                        <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White" Margin="0,0,0,20">
-                            <Entry HeightRequest="60" Placeholder="Insira uma Nova Senha" TextColor="#3D4DDE" IsPassword="True" Keyboard="Default" >
-                            </Entry>
+                        <Label Text="Digite uma Nova Senha" FontSize="15" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Black"></Label>
+                        <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                            <Grid ColumnDefinitions="*" HeightRequest="40">
+                                <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="InserirSenha" Text="{Binding NovaSenha}">
+                                </Entry>
+                                <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarSenha" Clicked="VizualizarSenha_Clicked">
+
+                                </ImageButton>
+                            </Grid>
                         </Frame>
 
-                            <Label Text="Repita a Senha" FontSize="15" FontAttributes="Bold" Margin="0,0,0,10" TextColor="Black"></Label>
-                        <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2" BorderColor="White" Margin="0,0,0,20">
-                            <Entry HeightRequest="60" Placeholder="Repita a Senha" TextColor="#3D4DDE" IsPassword="True" Keyboard="Default" >
-                            </Entry>
-                        </Frame>
+                        <Label Text="Repita a Senha" FontSize="15" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Black"></Label>
+                        <Frame CornerRadius="5" HeightRequest="40" BackgroundColor="White" Padding="2"  BorderColor="White">
+                            <Grid ColumnDefinitions="*" HeightRequest="40">
+                                <Entry HeightRequest="60" Placeholder="Insira sua Senha" TextColor="#3D4DDE" IsPassword="True" Grid.Column="0" x:Name="ConfirmaSenha" Text="{Binding ConfirmaSenha}">
+                                </Entry>
+                                <ImageButton Grid.Column="0" Source="eyeslashfill.png" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="End" x:Name="VizualizarSenhaConf" Clicked="VizualizarSenhaConf_Clicked">
 
-                        <Button Text="Enviar" HorizontalOptions="FillAndExpand" BackgroundColor="#3D4DDE"></Button>
+                                </ImageButton>
+                            </Grid>
+                        </Frame>
+                        
+                        <Button Text="Enviar" HorizontalOptions="FillAndExpand" BackgroundColor="#3D4DDE" Command="{Binding EnviarTrocaDeSenha}" Margin="0,20,0,0"></Button>
 
                     </VerticalStackLayout>
 

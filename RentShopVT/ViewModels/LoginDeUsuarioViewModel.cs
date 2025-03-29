@@ -86,6 +86,7 @@ namespace RentShopVT.ViewModels
                 Preferences.Set("TelefoneUser", response.Contato);
                 Preferences.Set("UsuarioLogado", true);
                 Preferences.Set("RedesSociais", json);
+                Preferences.Set("Token", response.Token);
 
                 await _navigation.PopModalAsync();
 

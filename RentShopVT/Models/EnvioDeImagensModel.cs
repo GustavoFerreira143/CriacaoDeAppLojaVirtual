@@ -1,5 +1,6 @@
 ﻿using Azure;
 using RestSharp;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -51,10 +52,10 @@ namespace RentShopVT.Models
                 // Define o tipo de conteúdo correto
                 streamContent.Headers.ContentType = new MediaTypeHeaderValue(mimeType);
                 content.Add(streamContent, "imagem", foto.FileName);
-                content.Add(new StringContent(ID), "\"ID\""); 
-
-                using var client = _httpClient;
-                var resposta = await client.PostAsync("http://192.168.100.63:5098/api/uploadimagemperfil", content);
+                content.Add(new StringContent(ID), "\"ID\"");
+                string token = Preferences.Get("Token", "");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var resposta = await _httpClient.PostAsync("http://192.168.100.63:5098/api/uploadimagemperfil", content);
 
                 string respostaJson = await resposta.Content.ReadAsStringAsync();
 

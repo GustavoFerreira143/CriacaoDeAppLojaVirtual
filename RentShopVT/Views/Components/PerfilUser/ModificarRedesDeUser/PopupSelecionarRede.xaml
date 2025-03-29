@@ -5,7 +5,7 @@
     xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
     x:Class="RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser.PopupSelecionarRede"
     >
-    <StackLayout BackgroundColor="Black" Opacity="1">
+    <StackLayout BackgroundColor="#3D4DDE" Opacity="1">
         <FlexLayout JustifyContent="Start" AlignContent="Center"  
                 BackgroundColor="#3D4DDE" HeightRequest="60" Opacity="1">
 

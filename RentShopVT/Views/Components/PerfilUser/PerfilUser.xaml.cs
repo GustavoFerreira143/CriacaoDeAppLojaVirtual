@@ -174,6 +174,14 @@ public partial class PerfilUser : ContentPage
         Preferences.Set("FotoPerfil", "personcircle.svg");
         Preferences.Set("TelefoneUser", "+00 00 00000-0000");
         Preferences.Set("RedesSociais", "{}");
+        Preferences.Set("Token", "");
+        Preferences.Set("Linkedin", false);
+        Preferences.Set("GitHub", false);
+        Preferences.Set("Facebook", false);
+        Preferences.Set("Twitter", false);
+        Preferences.Set("WhatsApp", false);
+        Preferences.Set("Tiktok", false);
+        Preferences.Set("Youtube", false);
 
         await Task.Delay(3000);
 

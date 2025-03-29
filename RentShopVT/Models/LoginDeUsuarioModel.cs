@@ -17,6 +17,7 @@ namespace RentShopVT.Models
         public bool AutorizadoVenda { get; set; }
         public string? FotoPerfil { get; set; }
         public string? Contato { get; set; }
+        public string Token { get; set; }
         public Dictionary<string, List<string>>? RedesSociais { get; set; }
         public bool? Success { get; set; }
         public string? Message { get; set; }

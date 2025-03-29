@@ -421,7 +421,6 @@ namespace RentShopVT.ViewModels
             }
         }
 
-        // 📌 Função para verificar se a senha tem pelo menos um caractere especial
         private bool SenhaPossuiCaractereEspecial(string senha)
         {
             return senha.Any(ch => !char.IsLetterOrDigit(ch));

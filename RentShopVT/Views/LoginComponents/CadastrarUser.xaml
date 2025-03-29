@@ -4,7 +4,7 @@
              x:Class="RentShopVT.Views.LoginComponents.CadastrarUser"
              xmlns:vm="clr-namespace:RentShopVT.ViewModels"
              Title="CadastrarUser"
-             BackgroundColor="#E2FDFF">
+             BackgroundColor="#3D4DDE">
 
 
     <StackLayout>

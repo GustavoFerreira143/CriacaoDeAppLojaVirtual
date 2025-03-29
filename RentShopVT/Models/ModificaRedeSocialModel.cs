@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -19,21 +20,15 @@ namespace RentShopVT.Models
         {
             try
             {
-                long id = 0;
-
-                long userId = Preferences.Get("Id", id);
-
-                string ID = userId.ToString();
 
                 var dados = new
                 {
-                    Id = ID,
                     RedesSociais = json
                 };
-                
                 var conteudo = JsonSerializer.Serialize(dados);
                 var content = new StringContent(conteudo, Encoding.UTF8, "application/json");
-
+                string token = Preferences.Get("Token","");
+                _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 HttpResponseMessage response = await _httpclient.PostAsync("http://192.168.100.63:5098/api/salvaredes", content);
                 if(response.IsSuccessStatusCode)
                 {

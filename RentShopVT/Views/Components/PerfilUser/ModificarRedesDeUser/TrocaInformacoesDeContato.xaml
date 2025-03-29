@@ -5,7 +5,7 @@
              x:Class="RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser.TrocaInformacoesDeContato"
              BackgroundColor="Transparent"
                   >
-    <StackLayout Opacity="1" BackgroundColor="Black">
+    <StackLayout Opacity="1" BackgroundColor="#3D4DDE">
         <FlexLayout JustifyContent="Start" AlignContent="Center"  
                 BackgroundColor="#3D4DDE" HeightRequest="60" Opacity="1">
 
