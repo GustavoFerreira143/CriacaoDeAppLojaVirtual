@@ -82,7 +82,7 @@ namespace RentShopVT.ViewModels
                 Preferences.Set("CNPJ", response.CNPJ);
                 Preferences.Set("CPF", response.CPF);
                 Preferences.Set("AutorizadoVenda", response.AutorizadoVenda);
-                Preferences.Set("FotoPerfil", "http://192.168.100.63:5098" + response.FotoPerfil);
+                Preferences.Set("FotoPerfil", Config.ApiKey + response.FotoPerfil);
                 Preferences.Set("TelefoneUser", response.Contato);
                 Preferences.Set("UsuarioLogado", true);
                 Preferences.Set("RedesSociais", json);

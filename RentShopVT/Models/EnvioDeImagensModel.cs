@@ -55,7 +55,7 @@ namespace RentShopVT.Models
                 content.Add(new StringContent(ID), "\"ID\"");
                 string token = Preferences.Get("Token", "");
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var resposta = await _httpClient.PostAsync("http://192.168.100.63:5098/api/uploadimagemperfil", content);
+                var resposta = await _httpClient.PostAsync($"{Config.ApiKey}api/uploadimagemperfil", content);
 
                 string respostaJson = await resposta.Content.ReadAsStringAsync();
 

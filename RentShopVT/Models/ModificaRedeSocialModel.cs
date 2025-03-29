@@ -29,7 +29,7 @@ namespace RentShopVT.Models
                 var content = new StringContent(conteudo, Encoding.UTF8, "application/json");
                 string token = Preferences.Get("Token","");
                 _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                HttpResponseMessage response = await _httpclient.PostAsync("http://192.168.100.63:5098/api/salvaredes", content);
+                HttpResponseMessage response = await _httpclient.PostAsync($"{Config.ApiKey}api/salvaredes", content);
                 if(response.IsSuccessStatusCode)
                 {
                     return response;

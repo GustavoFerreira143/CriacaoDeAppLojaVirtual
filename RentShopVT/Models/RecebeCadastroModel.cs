@@ -32,7 +32,7 @@ namespace RentShopVT.Models
                 string json = JsonSerializer.Serialize(usuario);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await _httpClient.PostAsync("http://192.168.100.63:5098/api/InserirValores", content);
+                HttpResponseMessage response = await _httpClient.PostAsync($"{Config.ApiKey}api/InserirValores", content);
                 response.EnsureSuccessStatusCode();
                 return true;
 

@@ -31,7 +31,7 @@ namespace RentShopVT.ViewModels
             if (resposta.Status == "Sucesso")
             {
 
-                Preferences.Set("FotoPerfil", "http://192.168.100.63:5098"+resposta.Link);
+                Preferences.Set("FotoPerfil", Config.ApiKey+resposta.Link);
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", "Imagem Alterada Com Sucesso", "Green"));
                 return resposta.Status;
             }
