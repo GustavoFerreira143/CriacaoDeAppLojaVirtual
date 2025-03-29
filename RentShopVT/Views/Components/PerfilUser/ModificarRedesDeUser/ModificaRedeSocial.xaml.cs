@@ -13,9 +13,6 @@ public partial class ModificaRedeSocial : ContentPage
     {
         base.OnAppearing();
         ModificaRedeSocialViewModel modelo = new ModificaRedeSocialViewModel(Navigation);
-
-
-
         modelo.AtualizarRedesSociais();
     }
 

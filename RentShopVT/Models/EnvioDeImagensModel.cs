@@ -53,19 +53,6 @@ namespace RentShopVT.Models
                 content.Add(streamContent, "imagem", foto.FileName);
                 content.Add(new StringContent(ID), "\"ID\""); 
 
-                Console.WriteLine("📤 Enviando os seguintes dados:");
-                foreach (var item in content)
-                {
-                    if (item is StringContent stringContent)
-                    {
-                        Console.WriteLine($"📝 Campo: {item.Headers.ContentDisposition?.Name}, Valor: {await stringContent.ReadAsStringAsync()}");
-                    }
-                    else if (item is StreamContent)
-                    {
-                        Console.WriteLine($"📸 Campo: {item.Headers.ContentDisposition?.Name}, Arquivo: {foto.FileName}");
-                    }
-                }
-
                 using var client = _httpClient;
                 var resposta = await client.PostAsync("http://192.168.100.63:5098/api/uploadimagemperfil", content);
 

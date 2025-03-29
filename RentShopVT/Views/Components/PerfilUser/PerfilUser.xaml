@@ -84,7 +84,7 @@
                                 <Label Text="Contato" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
                                 <Label x:Name="TelefoneUser" Text="+00 00 00000-0000" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
                             </VerticalStackLayout>
-                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold"/>
+                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold" x:Name="EditarContato" Clicked="EditarContato_Clicked"/>
                         </FlexLayout>
 
                         <!-- Linha do Email -->
@@ -93,7 +93,7 @@
                                 <Label Text="Email" FontAttributes="Bold" FontSize="14" TextColor="Black"/>
                                 <Label x:Name="EmailUser" Text="" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
                             </VerticalStackLayout>
-                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold"/>
+                            <Button Text="Editar" FontSize="12" BackgroundColor="Transparent" TextColor="#3D4DDE" WidthRequest="70" FontAttributes="Bold" x:Name="EditarEmail" Clicked="EditarEmail_Clicked"/>
                         </FlexLayout>
                     </VerticalStackLayout>
 

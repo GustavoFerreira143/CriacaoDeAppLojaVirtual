@@ -15,21 +15,12 @@ namespace RentShopVT.ViewModels
     public partial class PerfilDeUsuarioViewModel : ObservableObject
     {
         //-----------------------------------------------------------------------Valores a Serem Modificados---------------------------------------------------------------------------
-        public ICommand AbrirLink { get; }
-
-        //                    "Facebook", "Instagram", "Linkedin", "Twitter", "Tiktok", "Youtube", "GitHub", "WhatsApp"
 
         public PerfilDeUsuarioViewModel()
         {
 
-            AbrirLink = new RelayCommand(async () => await AbreLink());
+           
         }
 
-        public async Task AbreLink()
-        {
-
-            Launcher.OpenAsync("https://www.linkedin.com/in/gustavo-ferreira-238348231/");
-
-        }
     }
 }

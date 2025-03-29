@@ -7,6 +7,7 @@ using System.Windows.Input;
 using RentShopVT.Views.Components;
 using System.Text.RegularExpressions;
 using System.Text.Json;
+using RentShopVT.Models;
 
 namespace RentShopVT.ViewModels
 {
@@ -74,26 +75,45 @@ namespace RentShopVT.ViewModels
             TikTokText = "https://www.tiktok.com/";
             YoutubeText = "https://www.youtube.com/";
 
+            /* ----------------------------------------------------------------------------Atualização dos dados em ModificaRedes Antigo---------------------------------------------------------
+              Linkedin = Preferences.Get("Linkedin", false);
+              GitHub = Preferences.Get("GitHub", false);
+              Facebook = Preferences.Get("Facebook", false);
+              Instagram = Preferences.Get("Instagram", false);
+              Twitter = Preferences.Get("Twitter", false);
+              WhatsApp = Preferences.Get("WhatsApp", false);
+              TikTok = Preferences.Get("Tiktok", false);
+              Youtube = Preferences.Get("Youtube", false);
+            */
+            /* --------------------------------------------------------------------------Atualização dos dados em PopupSelecionarRede Antigo--------------------------------------------------
+             LinkedinUso = Preferences.Get("Linkedin", false);
+             GitHubUso = Preferences.Get("GitHub", false);
+             FacebookUso = Preferences.Get("Facebook", false);
+             InstagramUso = Preferences.Get("Instagram", false);
+             TwitterUso = Preferences.Get("Twitter", false);
+             WhatsAppUso = Preferences.Get("WhatsApp", false);
+             TikTokUso = Preferences.Get("Tiktok", false);
+             YoutubeUso = Preferences.Get("Youtube", false);
+            */
             //--------------------------------------------------------------------------------Atualização dos dados em ModificaRedes---------------------------------------------------------
-            Linkedin = Preferences.Get("Linkedin", false);
-            GitHub = Preferences.Get("GitHub", false);
-            Facebook = Preferences.Get("Facebook", false);
-            Instagram = Preferences.Get("Instagram", false);
-            Twitter = Preferences.Get("Twitter", false);
-            WhatsApp = Preferences.Get("WhatsApp", false);
-            TikTok = Preferences.Get("Tiktok", false);
-            Youtube = Preferences.Get("Youtube", false);
+            Linkedin = false;
+            GitHub = false;
+            Facebook = false;
+            Instagram = false;
+            Twitter = false;
+            WhatsApp = false;
+            TikTok = false;
+            Youtube = false;
 
             //--------------------------------------------------------------------------------Atualização dos dados em PopupSelecionarRede--------------------------------------------------
-            LinkedinUso = Preferences.Get("Linkedin", false);
-            GitHubUso = Preferences.Get("GitHub", false);
-            FacebookUso = Preferences.Get("Facebook", false);
-            InstagramUso = Preferences.Get("Instagram", false);
-            TwitterUso = Preferences.Get("Twitter", false);
-            WhatsAppUso = Preferences.Get("WhatsApp", false);
-            TikTokUso = Preferences.Get("Tiktok", false);
-            YoutubeUso = Preferences.Get("Youtube", false);
-
+            LinkedinUso = false;
+            GitHubUso = false;
+            FacebookUso = false;
+            InstagramUso = false;
+            TwitterUso = false;
+            WhatsAppUso = false;
+            TikTokUso = false;
+            YoutubeUso = false;
 
             string json = Preferences.Get("RedesSociais", "");
 
@@ -164,16 +184,16 @@ namespace RentShopVT.ViewModels
 
             // Lista de redes sociais com os textos fixos e valores correspondentes
             var redes = new List<(bool Selecionado,string Nome, string imagem, string Texto, string Valor)>
-    {
-        (Linkedin,"Linkedin", "linkedin.svg", LinkedinText, ValorLinkedin),
-        (GitHub,"GitHub", "github.svg", GitHubText, ValorGitHub),
-        (Facebook,"Facebook", "facebook.svg", FacebookText, ValorFacebook),
-        (Instagram,"Instagram", "instagram.svg", InstagramText, ValorInstagram),
-        (Twitter,"Twitter","twitterx.svg", TwitterText, ValorTwitter),
-        (WhatsApp,"WhatsApp", "whatsapp.svg", WhatsAppText, ValorWhatsApp),
-        (TikTok,"TikTok", "tiktok.svg", TikTokText, ValorTikTok),
-        (Youtube,"Youtube", "youtube.svg", YoutubeText, ValorYoutube)
-    };
+            {
+                (Linkedin,"Linkedin", "linkedin.svg", LinkedinText, ValorLinkedin),
+                (GitHub,"GitHub", "github.svg", GitHubText, ValorGitHub),
+                (Facebook,"Facebook", "facebook.svg", FacebookText, ValorFacebook),
+                (Instagram,"Instagram", "instagram.svg", InstagramText, ValorInstagram),
+                (Twitter,"Twitter","twitterx.svg", TwitterText, ValorTwitter),
+                (WhatsApp,"WhatsApp", "whatsapp.svg", WhatsAppText, ValorWhatsApp),
+                (TikTok,"TikTok", "tiktok.svg", TikTokText, ValorTikTok),
+                (Youtube,"Youtube", "youtube.svg", YoutubeText, ValorYoutube)
+            };
 
             foreach (var rede in redes)
             {
@@ -201,9 +221,6 @@ namespace RentShopVT.ViewModels
                     redesSelecionadas++;
                 }
             }
-            string json = JsonSerializer.Serialize(redesEscolhidas);
-            Preferences.Set("RedesSociais",json);
-            Console.WriteLine(json);
 
             var popup = new TelaLoading();
 
@@ -212,13 +229,30 @@ namespace RentShopVT.ViewModels
                 MopupService.Instance.PushAsync(popup);
             });
 
+            ModificaRedeSocialModel modificaRedeSocialModel = new ModificaRedeSocialModel();
+            var resposta = await modificaRedeSocialModel.ModificaRedeSocial(redesEscolhidas);
+
             await Task.Delay(2000);
+
+            if(resposta == null)
+            {
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    if (MopupService.Instance.PopupStack.Contains(popup))
+                        MopupService.Instance.PopAsync();
+                });
+                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("ERRO", $"Houve erro no momento de Envio tente Novamente", "Red"));
+                return;
+            }
 
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 if (MopupService.Instance.PopupStack.Contains(popup))
                     MopupService.Instance.PopAsync();
             });
+
+            string json = JsonSerializer.Serialize(redesEscolhidas);
+            Preferences.Set("RedesSociais", json);
 
             Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", $"Redes Sociais Salvas Com Sucesso", "Green"));
             _navigation.PopModalAsync();

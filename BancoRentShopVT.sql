@@ -20,5 +20,6 @@ CREATE TABLE RedesSociais(
     NomeRede Varchar(255) NOT NULL,
     IconeRede Varchar(100) NOT NULL,
     LinkRede Varchar(255) NOT NULL,
+    PerfilUserRede Varchar(255) NOT NULL,
     FOREIGN KEY (Usuario) REFERENCES Usuarios(id)
 );

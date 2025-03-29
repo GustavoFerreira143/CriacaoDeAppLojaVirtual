@@ -17,6 +17,7 @@ namespace RentShopVT.Models
         public bool AutorizadoVenda { get; set; }
         public string? FotoPerfil { get; set; }
         public string? Contato { get; set; }
+        public Dictionary<string, List<string>>? RedesSociais { get; set; }
         public bool? Success { get; set; }
         public string? Message { get; set; }
 
@@ -54,14 +55,14 @@ namespace RentShopVT.Models
                 
                 string respostaJson = await response.Content.ReadAsStringAsync();
 
-                var listaUsuarios = JsonSerializer.Deserialize<List<LoginDeUsuarioModel>>(respostaJson, new JsonSerializerOptions
+                var listaUsuarios = JsonSerializer.Deserialize<LoginDeUsuarioModel>(respostaJson, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
 
-                if(listaUsuarios?.FirstOrDefault() != null)
+                if(listaUsuarios != null)
                 {
-                    return listaUsuarios?.FirstOrDefault();
+                    return listaUsuarios;
                 }
                 else
                 {

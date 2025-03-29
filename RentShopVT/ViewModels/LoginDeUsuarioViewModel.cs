@@ -6,6 +6,8 @@ using CommunityToolkit.Mvvm.Input;
 using RentShopVT.Views.Components;
 using Mopups.Services;
 using RentShopVT.Models;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using System.Text.Json;
 
 namespace RentShopVT.ViewModels
 {
@@ -70,6 +72,7 @@ namespace RentShopVT.ViewModels
                 }
 
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", $"Usuário Vinculado com Sucesso", "Green"));
+                var json = JsonSerializer.Serialize(response.RedesSociais);
 
                 //--------------------------------------------------------------------------------------Salvando Informações do Usuário-----------------------------------------------------------------------------------
                 Preferences.Set("Id", response.Id);
@@ -82,6 +85,7 @@ namespace RentShopVT.ViewModels
                 Preferences.Set("FotoPerfil", "http://192.168.100.63:5098" + response.FotoPerfil);
                 Preferences.Set("TelefoneUser", response.Contato);
                 Preferences.Set("UsuarioLogado", true);
+                Preferences.Set("RedesSociais", json);
 
                 await _navigation.PopModalAsync();
 

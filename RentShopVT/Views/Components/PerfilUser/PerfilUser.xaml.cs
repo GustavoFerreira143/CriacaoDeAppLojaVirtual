@@ -3,7 +3,6 @@ using Mopups.Services;
 using RentShopVT.ViewModels;
 using RentShopVT.Models;
 using RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
-using GoogleGson;
 using System.Text.Json;
 
 namespace RentShopVT.Views.Components.PerfilUser;
@@ -174,6 +173,7 @@ public partial class PerfilUser : ContentPage
         Preferences.Set("AutorizadoVenda", false);
         Preferences.Set("FotoPerfil", "personcircle.svg");
         Preferences.Set("TelefoneUser", "+00 00 00000-0000");
+        Preferences.Set("RedesSociais", "{}");
 
         await Task.Delay(3000);
 
@@ -197,10 +197,21 @@ public partial class PerfilUser : ContentPage
             FotoPerfilUser.Source = FotoPerfil;
         }
     }
-
+//---------------------------------------------------------------------------------------------Abre Tela Editar Redes Sociais--------------------------------------------------------------------------------
     async private void AbreTelaRedes_Tapped(object sender, TappedEventArgs e)
     {
 
         await Navigation.PushModalAsync(new ModificaRedeSocial());
+    }
+
+//------------------------------------------------------------------------------------------Evento Abre Telas Troca Contato e Email---------------------------------------------------------------------------
+    async private void EditarContato_Clicked(object sender, EventArgs e)
+    {
+        await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(0));
+    }
+
+    async private void EditarEmail_Clicked(object sender, EventArgs e)
+    {
+        await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(1));
     }
 }
