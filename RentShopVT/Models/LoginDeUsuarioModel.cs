@@ -37,14 +37,16 @@ namespace RentShopVT.Models
                 var usuario = new
                 {
                     Email = email,
-                    Senha = senha
+                    Senha = senha,
+                    MeuHashSecreto = Config.MeuTokenLoginUser
                 };
 
                 string json = JsonSerializer.Serialize(usuario);
+               
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                
                 HttpResponseMessage response = await _httpClient.PostAsync($"{Config.MeuUrl}api/VerificarLogin", content);
-
+               
                 if (!response.IsSuccessStatusCode)
                 {
                     return new LoginDeUsuarioModel

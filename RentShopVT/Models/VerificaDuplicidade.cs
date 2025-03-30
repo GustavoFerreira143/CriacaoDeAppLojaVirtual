@@ -23,6 +23,7 @@ namespace RentShopVT.Models
                 {
                     Coluna = Coluna,
                     Valor = Valor,
+                    MeuHashSecreto = Config.VerificaDuplicidadeHash
                 };
                 var json = JsonSerializer.Serialize(usuario);
                 var conteudo = new StringContent(json, Encoding.UTF8, "application/json");

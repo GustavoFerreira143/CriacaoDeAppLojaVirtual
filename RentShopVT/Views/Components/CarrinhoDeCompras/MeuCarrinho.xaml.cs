@@ -67,35 +67,43 @@ public partial class MeuCarrinho : ContentPage
 
     private async Task ProcessarLogout()
     {
-        var popup = new TelaLoading();
-        await MopupService.Instance.PushAsync(popup);
+        try
+        {
+            var popup = new TelaLoading();
+            await MopupService.Instance.PushAsync(popup);
 
-        Preferences.Set("Id", "");
-        Preferences.Set("Nome", "");
-        Preferences.Set("Email", "");
-        Preferences.Set("NomeEmpresa", "");
-        Preferences.Set("CNPJ", "");
-        Preferences.Set("CPF", "");
-        Preferences.Set("AutorizadoVenda", false);
-        Preferences.Set("FotoPerfil", "personcircle.svg");
-        Preferences.Set("TelefoneUser", "+00 00 00000-0000");
-        Preferences.Set("RedesSociais", "{}");
-        Preferences.Set("Token", "");
-        Preferences.Set("Linkedin", false);
-        Preferences.Set("GitHub", false);
-        Preferences.Set("Facebook", false);
-        Preferences.Set("Twitter", false);
-        Preferences.Set("WhatsApp", false);
-        Preferences.Set("Tiktok", false);
-        Preferences.Set("Youtube", false);
+            Preferences.Set("Id", "");
+            Preferences.Set("Nome", "");
+            Preferences.Set("Email", "");
+            Preferences.Set("NomeEmpresa", "");
+            Preferences.Set("CNPJ", "");
+            Preferences.Set("CPF", "");
+            Preferences.Set("AutorizadoVenda", false);
+            Preferences.Set("FotoPerfil", "personcircle.svg");
+            Preferences.Set("TelefoneUser", "+00 00 00000-0000");
+            Preferences.Set("RedesSociais", "{}");
+            Preferences.Set("Token", "");
+            Preferences.Set("Linkedin", false);
+            Preferences.Set("GitHub", false);
+            Preferences.Set("Facebook", false);
+            Preferences.Set("Twitter", false);
+            Preferences.Set("WhatsApp", false);
+            Preferences.Set("Tiktok", false);
+            Preferences.Set("Youtube", false);
+            Preferences.Set("Instagram", false);
 
-        await Task.Delay(3000);
+            await Task.Delay(3000);
 
-        await MopupService.Instance.PopAsync();
+            await MopupService.Instance.PopAsync();
 
-        var alerta = new CaixaDeAlerta("Sucesso", "Usuário Deslogado Com Sucesso", "Green");
-        this.ShowPopup(alerta);
+            var alerta = new CaixaDeAlerta("Sucesso", "Usuário Deslogado Com Sucesso", "Green");
+            this.ShowPopup(alerta);
 
-        VerificaLogado(false);
+            VerificaLogado(false);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }

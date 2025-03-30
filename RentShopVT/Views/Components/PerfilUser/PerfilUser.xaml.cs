@@ -161,36 +161,44 @@ public partial class PerfilUser : ContentPage
 
     private async Task ProcessarLogout()
     {
-        var popup = new TelaLoading();
-        await MopupService.Instance.PushAsync(popup);
+        try
+        {
+            var popup = new TelaLoading();
+            await MopupService.Instance.PushAsync(popup);
 
-        Preferences.Set("Id", "");
-        Preferences.Set("Nome", "");
-        Preferences.Set("Email", "");
-        Preferences.Set("NomeEmpresa", "");
-        Preferences.Set("CNPJ", "");
-        Preferences.Set("CPF", "");
-        Preferences.Set("AutorizadoVenda", false);
-        Preferences.Set("FotoPerfil", "personcircle.svg");
-        Preferences.Set("TelefoneUser", "+00 00 00000-0000");
-        Preferences.Set("RedesSociais", "{}");
-        Preferences.Set("Token", "");
-        Preferences.Set("Linkedin", false);
-        Preferences.Set("GitHub", false);
-        Preferences.Set("Facebook", false);
-        Preferences.Set("Twitter", false);
-        Preferences.Set("WhatsApp", false);
-        Preferences.Set("Tiktok", false);
-        Preferences.Set("Youtube", false);
+            Preferences.Set("Id", "");
+            Preferences.Set("Nome", "");
+            Preferences.Set("Email", "");
+            Preferences.Set("NomeEmpresa", "");
+            Preferences.Set("CNPJ", "");
+            Preferences.Set("CPF", "");
+            Preferences.Set("AutorizadoVenda", false);
+            Preferences.Set("FotoPerfil", "personcircle.svg");
+            Preferences.Set("TelefoneUser", "+00 00 00000-0000");
+            Preferences.Set("RedesSociais", "{}");
+            Preferences.Set("Token", "");
+            Preferences.Set("Linkedin", false);
+            Preferences.Set("GitHub", false);
+            Preferences.Set("Facebook", false);
+            Preferences.Set("Twitter", false);
+            Preferences.Set("WhatsApp", false);
+            Preferences.Set("Tiktok", false);
+            Preferences.Set("Youtube", false);
+            Preferences.Set("Instagram", false);
 
-        await Task.Delay(3000);
+            await Task.Delay(3000);
 
-        await MopupService.Instance.PopAsync();
+            await MopupService.Instance.PopAsync();
 
-        var alerta = new CaixaDeAlerta("Sucesso", "Usuário Deslogado Com Sucesso", "Green");
-        this.ShowPopup(alerta);
+            var alerta = new CaixaDeAlerta("Sucesso", "Usuário Deslogado Com Sucesso", "Green");
+            this.ShowPopup(alerta);
 
-        VerificaLogado(false);
+            VerificaLogado(false);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
     //-----------------------------------------------------------------------------------------------------------Função Envio de Imagem Perfil--------------------------------------------------------------
     async private void EnviarFoto_Tapped(object sender, TappedEventArgs e)
@@ -212,14 +220,27 @@ public partial class PerfilUser : ContentPage
         await Navigation.PushModalAsync(new ModificaRedeSocial());
     }
 
-//------------------------------------------------------------------------------------------Evento Abre Telas Troca Contato e Email---------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------Evento Abre Telas Troca Contato e Email---------------------------------------------------------------------------
     async private void EditarContato_Clicked(object sender, EventArgs e)
     {
-        await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(0));
+        try
+        {
+            await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(0));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
-
     async private void EditarEmail_Clicked(object sender, EventArgs e)
     {
-        await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(1));
+            try
+            {
+                await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(1));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
     }
 }

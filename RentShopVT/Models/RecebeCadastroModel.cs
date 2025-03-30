@@ -26,7 +26,8 @@ namespace RentShopVT.Models
                     CNPJ = string.IsNullOrEmpty(cnpj) ? null : cnpj,
                     NomeEmpresa = string.IsNullOrEmpty(nomeEmpresa) ? null : nomeEmpresa,
                     CPF = string.IsNullOrEmpty(cpf) ? null : cpf,
-                    AutorizadoVenda = termos
+                    AutorizadoVenda = termos,
+                    HashSecreto = Config.MeuTokenCadastraUser
                 };
 
                 string json = JsonSerializer.Serialize(usuario);

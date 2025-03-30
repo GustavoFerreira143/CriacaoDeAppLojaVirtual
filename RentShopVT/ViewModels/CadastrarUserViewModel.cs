@@ -179,7 +179,7 @@ namespace RentShopVT.ViewModels
                     });
 
                     string content = await response.Content.ReadAsStringAsync();
-                    var mensagem = JsonSerializer.Deserialize<RecuperaSenhaViewModel>(content);
+                    var mensagem = JsonSerializer.Deserialize<ConfEmail>(content);
 
                     Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", $"Seu Token: {mensagem.mensagem}", "Green"));
                     EmailEnviado = Email;
@@ -306,15 +306,13 @@ namespace RentShopVT.ViewModels
                 return;
             }
             var popup = new TelaLoading();
-
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                MopupService.Instance.PushAsync(popup);
-            });
-
             try
             {
-            VerificaDuplicidade duplicidade = new VerificaDuplicidade();
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    MopupService.Instance.PushAsync(popup);
+                });
+                VerificaDuplicidade duplicidade = new VerificaDuplicidade();
 
             if (!string.IsNullOrWhiteSpace(Cpf) && Cpf.Length == 11)
             {
@@ -491,5 +489,9 @@ namespace RentShopVT.ViewModels
             // Compara os dois dígitos verificadores calculados com os fornecidos
             return cnpj.EndsWith(digito1.ToString() + digito2.ToString());
         }
+    }
+    public class ConfEmail
+    {
+        public string mensagem { get; set; }
     }
 }
