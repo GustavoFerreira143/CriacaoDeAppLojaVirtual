@@ -30,7 +30,8 @@ namespace RentShopVT.Models
                 string token = Preferences.Get("Token","");
                 _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 HttpResponseMessage response = await _httpclient.PostAsync($"{Config.MeuUrl}api/salvaredes", content);
-                if(response.IsSuccessStatusCode)
+                Console.WriteLine("Chegou");
+                if (response.IsSuccessStatusCode)
                 {
                     return response;
                 }
