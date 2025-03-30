@@ -75,7 +75,6 @@ namespace RentShopVT.ViewModels
                 var json = JsonSerializer.Serialize(response.RedesSociais);
 
                 //--------------------------------------------------------------------------------------Salvando Informações do Usuário-----------------------------------------------------------------------------------
-                Preferences.Set("Id", response.Id);
                 Preferences.Set("Nome", response.Nome);
                 Preferences.Set("Email", response.Email);
                 Preferences.Set("NomeEmpresa", response.NomeEmpresa);

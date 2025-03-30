@@ -36,15 +36,6 @@ namespace RentShopVT.Models
                 if (mimeType == null)
                     return new Retorno { Status="400", Link = "Arquivo Inválido Enviado" }; 
 
-                long id = 0;
-
-                long userId = Preferences.Get("Id", id);
-
-                string ID = userId.ToString();
-
-                if (string.IsNullOrEmpty(ID) || ID == "0")
-                    return new Retorno { Status = "400", Link = "Usuário deve Estar Logado" };
-
                 using var stream = await foto.OpenReadAsync();
                 using var content = new MultipartFormDataContent();
                 using var streamContent = new StreamContent(stream);
@@ -52,7 +43,6 @@ namespace RentShopVT.Models
                 // Define o tipo de conteúdo correto
                 streamContent.Headers.ContentType = new MediaTypeHeaderValue(mimeType);
                 content.Add(streamContent, "imagem", foto.FileName);
-                content.Add(new StringContent(ID), "\"ID\"");
                 string token = Preferences.Get("Token", "");
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var resposta = await _httpClient.PostAsync($"{Config.MeuUrl}api/uploadimagemperfil", content);
