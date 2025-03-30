@@ -27,7 +27,7 @@ namespace RentShopVT.Models
                 var json = JsonSerializer.Serialize(usuario);
                 var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await _httpClient.PostAsync($"{Config.ApiKey}api/VerificarDuplicidade", conteudo);
+                HttpResponseMessage response = await _httpClient.PostAsync($"{Config.MeuUrl}api/VerificarDuplicidade", conteudo);
 
                 response.EnsureSuccessStatusCode();
                 string resposta = await response.Content.ReadAsStringAsync();

@@ -31,7 +31,7 @@ namespace RentShopVT.ViewModels
             if (resposta.Status == "Sucesso")
             {
 
-                Preferences.Set("FotoPerfil", Config.ApiKey+resposta.Link);
+                Preferences.Set("FotoPerfil", Config.MeuUrl + resposta.Link);
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", "Imagem Alterada Com Sucesso", "Green"));
                 return resposta.Status;
             }

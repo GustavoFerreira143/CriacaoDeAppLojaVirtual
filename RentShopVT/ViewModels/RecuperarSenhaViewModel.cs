@@ -42,10 +42,13 @@ namespace RentShopVT.ViewModels
 
         public ICommand EnviarTrocaDeSenha { get; }
 
-        public RecuperaSenhaViewModel()
+        private INavigation navigation;
+
+        public RecuperaSenhaViewModel(INavigation _navigation)
         {
             EmailDigitado = "Nenhum Email Digitado";
 
+            navigation = _navigation;
             ViewEmail = true;
             ViewToken = false;
             ViewTrocaSenha = false;
@@ -86,8 +89,9 @@ namespace RentShopVT.ViewModels
 
                     if (response.IsSuccessStatusCode)
                     {
+                        
                         string content = await response.Content.ReadAsStringAsync();
-                        var mensagem = JsonSerializer.Deserialize<RecuperaSenhaViewModel>(content);
+                        var mensagem = JsonSerializer.Deserialize<Retorno>(content);
 
                         await MainThread.InvokeOnMainThreadAsync(() =>
                         {
@@ -123,6 +127,10 @@ namespace RentShopVT.ViewModels
             }
             catch (Exception ex)
             {
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    MopupService.Instance.PopAsync();
+                });
                 Console.WriteLine($"Erro ao enviar e-mail: {ex.Message}");
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Houve Problemas Internos Tente Novamente", "Red"));
                 ViewToken = false;
@@ -183,44 +191,73 @@ namespace RentShopVT.ViewModels
 
         private async Task EnviaTrocadeSenhas()
         {
-            if (string.IsNullOrWhiteSpace(NovaSenha) && string.IsNullOrWhiteSpace(ConfirmaSenha))
+            try
             {
-                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Há Campos vázios", "Red"));
-                return;
-            }
-            if(NovaSenha != ConfirmaSenha)
-            {
-                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "As Senhas Não Batem", "Red"));
-                return;
-            }
-            if(NovaSenha.Length < 6)
-            {
-                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "A Senha Deve Ter no Minimo 6 Caracteres", "Red"));
-                return;
-            }
-            if(SenhaPossuiCaractereEspecial(NovaSenha))
-            {
-                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "A Senha Deve Ter no Minimo 1 Caracter Especial", "Red"));
-                return;
-            }
-            var popup = new TelaLoading();
+                if (string.IsNullOrWhiteSpace(NovaSenha) && string.IsNullOrWhiteSpace(ConfirmaSenha))
+                {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Há Campos vázios", "Red"));
+                    return;
+                }
+                if (NovaSenha != ConfirmaSenha)
+                {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "As Senhas Não Batem", "Red"));
+                    return;
+                }
+                if (NovaSenha.Length < 6)
+                {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "A Senha Deve Ter no Minimo 6 Caracteres", "Red"));
+                    return;
+                }
+                if (!SenhaPossuiCaractereEspecial(NovaSenha))
+                {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "A Senha Deve Ter no Minimo 1 Caracter Especial", "Red"));
+                    return;
+                }
+                var popup = new TelaLoading();
 
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                MopupService.Instance.PushAsync(popup);
-            });
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    MopupService.Instance.PushAsync(popup);
+                });
 
-             
+                AlteraDadosModel alteramodel = new AlteraDadosModel();
+                var resposta = await alteramodel.EnviaTroca(EmailDigitado, NovaSenha);
+                if (resposta != null )
+                {
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        MopupService.Instance.PopAsync();
+                    });
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Sucesso", "Sua Senha foi Alterada com Sucesso", "Green"));
+                    navigation.PopModalAsync();
+                    return;
 
-            await MainThread.InvokeOnMainThreadAsync(() =>
+                }
+                else
+                {
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        MopupService.Instance.PopAsync();
+
+                    });
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "A Senha Não Pode ser Alterada Tente Novamente", "Red"));
+                    return;
+                }
+            }
+            catch(Exception ex)
             {
-                MopupService.Instance.PopAsync();
-            });
+                Console.WriteLine($"Erro ao enviar e-mail: {ex.Message}");
+                return;
+            }
+
         }
         private bool SenhaPossuiCaractereEspecial(string senha)
         {
             return senha.Any(ch => !char.IsLetterOrDigit(ch));
         }
-
+           public class Retorno
+        {
+            public string mensagem { get; set; }
+        }
     }
 }

@@ -6,7 +6,7 @@ public partial class RecuperarSenha : ContentPage
 	public RecuperarSenha()
 	{
 		InitializeComponent();
-        BindingContext = new RecuperaSenhaViewModel(); 
+        BindingContext = new RecuperaSenhaViewModel(Navigation); 
     }
 
     async private void VoltarLogin_Clicked(object sender, EventArgs e)
