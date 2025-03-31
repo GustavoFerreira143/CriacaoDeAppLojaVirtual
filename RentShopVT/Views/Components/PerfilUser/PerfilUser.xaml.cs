@@ -225,7 +225,7 @@ public partial class PerfilUser : ContentPage
     {
         try
         {
-            await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(0));
+            await Navigation.PushModalAsync(new TrocaInformacoesDeContato(1));
         }
         catch (Exception ex)
         {
@@ -236,7 +236,7 @@ public partial class PerfilUser : ContentPage
     {
             try
             {
-                await MopupService.Instance.PushAsync(new TrocaInformacoesDeContato(1));
+                await Navigation.PushModalAsync(new TrocaInformacoesDeContato(0));
             }
             catch (Exception ex)
             {

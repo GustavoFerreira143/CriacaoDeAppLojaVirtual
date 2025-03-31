@@ -4,12 +4,12 @@ using RentShopVT.ViewModels;
 
 namespace RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
 
-public partial class TrocaInformacoesDeContato : PopupPage
+public partial class TrocaInformacoesDeContato : ContentPage
 {
 	public TrocaInformacoesDeContato(int tela)
 	{
 		InitializeComponent();
-		BindingContext = new TrocaInformacoesDeContatoViewModel();
+		BindingContext = new TrocaInfoContatoViewModel(Navigation);
 		if(tela == 0)
 		{
 			EmailUser.IsVisible = true;
@@ -24,6 +24,6 @@ public partial class TrocaInformacoesDeContato : PopupPage
 	}
     async private void FecharPopup_Clicked(object sender, EventArgs e)
     {
-        await MopupService.Instance.PopAsync();
+        await Navigation.PopModalAsync();
     }
 }

@@ -122,7 +122,12 @@ namespace RentShopVT.ViewModels
                 Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Há campos não preenchidos", "Red"));
                 return;
             }
-            if(!string.IsNullOrWhiteSpace(Telefone))
+            if (string.IsNullOrWhiteSpace(Telefone))
+            {
+                    Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Insira um Numero de Telefone", "Red"));
+                    return;
+            }
+            if (!string.IsNullOrWhiteSpace(Telefone))
             {
                 if(telefone.Length < 10)
                 {
