@@ -4,6 +4,7 @@ using RentShopVT.ViewModels;
 using RentShopVT.Models;
 using RentShopVT.Views.Components.PerfilUser.ModificarRedesDeUser;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace RentShopVT.Views.Components.PerfilUser;
 
@@ -242,5 +243,11 @@ public partial class PerfilUser : ContentPage
             {
                 Console.WriteLine(ex.Message);
             }
+    }
+    //-----------------------------------------------------------------------------------Abre Tela de Adicionar Produtos--------------------------------------------------------------------------------------------
+
+    private async void AddProd_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new TelaAddProdutos());
     }
 }

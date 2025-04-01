@@ -124,6 +124,8 @@
                              MinimumWidthRequest="180"
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
+                             x:Name="AddProd"
+                             Clicked="AddProd_Clicked"
                          ></Button>
 
                     <Label Text="Seus Produtos Disponibilizados:"
@@ -238,8 +240,8 @@
         <Grid VerticalOptions="CenterAndExpand"  x:Name="NaoLogado"
                          IsVisible="False">
             <StackLayout 
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand">
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand">
                 <Image Source="exclamationoctagon.svg"
                        HeightRequest="100"
                        WidthRequest="100"
