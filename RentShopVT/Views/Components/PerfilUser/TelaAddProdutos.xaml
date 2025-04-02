@@ -50,19 +50,19 @@
                 <Label Text="Quantidade Disponivel" TextColor="#3D4DDE" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Start" Margin="10,10,0,10"></Label>
 
                 <FlexLayout JustifyContent="SpaceAround" AlignContent="Center">
-                    <ImageButton Source="arrowup.svg" HeightRequest="40" WidthRequest="40" Padding="5"  VerticalOptions="Center" FlexLayout.Grow="1" BackgroundColor="#3D4DDE" CornerRadius="10">
+                    <ImageButton Source="arrowup.svg" HeightRequest="40" WidthRequest="40" Padding="5"  VerticalOptions="Center" FlexLayout.Grow="1" BackgroundColor="#3D4DDE" CornerRadius="10" Command="{Binding AdicionaQuantidade}">
 
                     </ImageButton>
                     <Entry
                             Placeholder="Quantidade"
-                            FlexLayout.Grow="3"
+                            FlexLayout.Grow="2"
                             PlaceholderColor="#3D4DDE"    
-                            Text="0"
+                            Text="{Binding Quantidade}"
                             Keyboard="Numeric"
                             TextColor="#3D4DDE"
+                            HorizontalTextAlignment="Center"
                             />
-                    <ImageButton  Source="arrowdown.svg" HeightRequest="40" WidthRequest="40" Padding="5" VerticalOptions="Center" FlexLayout.Grow="1" BackgroundColor="#3D4DDE" CornerRadius="10">
-
+                    <ImageButton  Source="arrowdown.svg" HeightRequest="40" WidthRequest="40" Padding="5" VerticalOptions="Center" FlexLayout.Grow="1" BackgroundColor="#3D4DDE" CornerRadius="10" Command="{Binding ReduzQuantidade}">
                     </ImageButton>
                 </FlexLayout>
 
@@ -142,7 +142,7 @@
         </Frame>
                 <FlexLayout JustifyContent="Center">
                     <VerticalStackLayout>
-                        <Button Text="Emular Tela Vista pelo Cliente" FontSize="14" FontAttributes="Bold" TextColor="#E2FDFF" BackgroundColor="#3D4DDE"  Margin="0,10,0,10"></Button>
+                        <Button Text="Salvar Alterações" FontSize="14" FontAttributes="Bold" TextColor="#E2FDFF" BackgroundColor="#3D4DDE"  Margin="0,10,0,10"></Button>
                     </VerticalStackLayout>
                 </FlexLayout>
             </StackLayout>
@@ -150,7 +150,7 @@
         <StackLayout >
             <FlexLayout JustifyContent="Center" BackgroundColor="#3D4DDE">
                 <VerticalStackLayout>
-                    <Button Text="Salvar Alterações" FontSize="14" FontAttributes="Bold" TextColor="#3D4DDE" BackgroundColor="#E2FDFF"  Margin="0,10,0,10"></Button>
+                    <Button Text="Emular Tela Vista pelo Cliente" FontSize="14" FontAttributes="Bold" TextColor="#3D4DDE" BackgroundColor="#E2FDFF"  Margin="0,10,0,10"></Button>
                 </VerticalStackLayout>
             </FlexLayout>
         </StackLayout>
