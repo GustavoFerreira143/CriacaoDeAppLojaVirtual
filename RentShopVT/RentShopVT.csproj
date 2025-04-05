@@ -124,6 +124,9 @@
 	  <MauiXaml Update="Views\Components\PerfilUser\TelaAddProdutos.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\PerfilUser\TelaEmulada.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\TelaLoading.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

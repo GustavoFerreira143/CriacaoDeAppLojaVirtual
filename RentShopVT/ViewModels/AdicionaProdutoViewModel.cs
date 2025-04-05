@@ -11,6 +11,8 @@ namespace RentShopVT.ViewModels
     {
         public ICommand AdicionaQuantidade { get; }
         public ICommand ReduzQuantidade { get; }
+        public ICommand AdicionarFoto { get; }
+
 
         [ObservableProperty]
         private int quantidade;
@@ -20,6 +22,7 @@ namespace RentShopVT.ViewModels
             Quantidade = 0;
             AdicionaQuantidade = new RelayCommand(async () => await AdicionaValor());
             ReduzQuantidade = new RelayCommand(async () => await ReduzValor());
+            AdicionarFoto = new RelayCommand(async () => await AdicionarFotos());
         }
         public async Task AdicionaValor()
         {
@@ -27,10 +30,31 @@ namespace RentShopVT.ViewModels
         }
         public async Task ReduzValor()
         {
-            if(Quantidade > 0)
+            if (Quantidade > 0)
             {
                 Quantidade = Quantidade - 1;
             }
+        }
+        public async Task AdicionarFotos()
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync(new PickOptions
+                {
+                    PickerTitle = "Selecione uma imagem",
+                    FileTypes = FilePickerFileType.Images
+                });
+
+                if (result != null)
+                {
+                    using var stream = await result.OpenReadAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.ShowPopup(new CaixaDeAlerta("Erro", "Falha ao Adicionar Foto", "Red"));
+            }
+
         }
     }
 }
